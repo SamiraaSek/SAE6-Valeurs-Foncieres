@@ -1,0 +1,7 @@
+Source des données :
+https://www.data.gouv.fr/datasets/demandes-de-valeurs-foncieres-geolocalisees/
+
+Fichier utilisé : full_data.csv
+Taille : ~500 Mo
+Non inclus dans ce repo en raison de la taille.
+Télécharger directement depuis le lien ci-dessus.

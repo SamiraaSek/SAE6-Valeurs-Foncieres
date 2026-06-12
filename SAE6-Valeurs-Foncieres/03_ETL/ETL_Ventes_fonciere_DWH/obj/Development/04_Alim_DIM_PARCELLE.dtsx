@@ -1,0 +1,1600 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="6/4/2026 2:05:22 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="ul5080"
+  DTS:CreatorName="ul5080\sql"
+  DTS:DTSID="{C908B212-AB01-4FFE-9E19-4D9990D2AFD8}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="17.0.1016.0"
+  DTS:LocaleID="1036"
+  DTS:ObjectName="Package1"
+  DTS:PackageType="5"
+  DTS:VersionBuild="14"
+  DTS:VersionGUID="{BC09AF33-5384-447C-A523-05CC0BDA4159}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Connexion_Ventes_Fonciere]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{8F33B450-6309-4B19-9C95-0A38B3498262}"
+      DTS:ObjectName="Connexion_Ventes_Fonciere">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=DESKTOP-PDTQGH1\SQLEXPRESS;Initial Catalog=Ventes_fonciere;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Auto Translate=False;Application Name=SSIS-Package1-{8F33B450-6309-4B19-9C95-0A38B3498262}Connexion de données1;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Connexion_Ventes_Foncieres_DWH]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{E269F537-6382-4B5B-AA3F-F307FD654B09}"
+      DTS:ObjectName="Connexion_Ventes_Foncieres_DWH">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=DESKTOP-PDTQGH1\SQLEXPRESS;Initial Catalog=Ventes_fonciere_DWH;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Auto Translate=False;Application Name=SSIS-Package1-{E269F537-6382-4B5B-AA3F-F307FD654B09}Connexion de données;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\DIM_PARCELLE"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Tâche de flux de données"
+      DTS:DTSID="{5FE8B2B5-45F7-4BB5-8F7A-FB79E8742E86}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="DIM_PARCELLE"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\DIM_PARCELLE\Destination OLE DB"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="Destination OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;4"
+              description="Destination OLE DB"
+              name="Destination OLE DB"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Nombre de secondes avant l'expiration d'une commande.  Une valeur égale à 0 indique un délai d'expiration infini."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                  name="OpenRowset">[dbo].[DIM_PARCELLE]</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie la variable contenant le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Commande SQL à exécuter."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=17.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie la page de codes de la colonne à utiliser lorsque les informations de page de codes ne sont pas disponibles à partir de la source de données."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Force l'utilisation de la valeur de propriété DefaultCodePage lors de la description des données caractères."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie le mode utilisé pour accéder à la base de données."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indique si les valeurs fournies pour les colonnes d'identité seront copiées à la destination. Si la valeur est définie à False, les valeurs des colonnes d'identité seront générées automatiquement à la destination. Ne s'applique que si le chargement rapide est activé."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indique si les colonnes contenant la valeur NULL auront cette valeur NULL copiée à la destination. Si la valeur est définie à False, les colonnes contenant la valeur NULL auront leurs valeurs par défaut insérées à la destination. Ne s'applique que si le chargement rapide est activé."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie les options à utiliser avec le chargement rapide.  Ne s'applique que si le chargement rapide est activé."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie quand les validations sont émises pendant l'insertion des données.  Une valeur égale à 0 spécifie qu'une validation sera émise à la fin de l'insertion des données.  Ne s'applique que si le chargement rapide est activé."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DIM_PARCELLE\Destination OLE DB.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Connexion_Ventes_Foncieres_DWH]"
+                  connectionManagerRefId="Package.ConnectionManagers[Connexion_Ventes_Foncieres_DWH]"
+                  description="Connexion OLE DB en cours d'exécution utilisée pour accéder à la base de données."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DIM_PARCELLE\Destination OLE DB.Inputs[Entrée de destination OLE DB]"
+                  errorOrTruncationOperation="Insérer"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Entrée de destination OLE DB">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DIM_PARCELLE\Destination OLE DB.Inputs[Entrée de destination OLE DB].Columns[n_parcelle]"
+                      cachedDataType="i4"
+                      cachedName="n_parcelle"
+                      cachedSortKeyPosition="1"
+                      externalMetadataColumnId="Package\DIM_PARCELLE\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[n_parcelle]"
+                      lineageId="Package\DIM_PARCELLE\Trier.Outputs[Sortie de tri].Columns[n_parcelle]" />
+                    <inputColumn
+                      refId="Package\DIM_PARCELLE\Destination OLE DB.Inputs[Entrée de destination OLE DB].Columns[id_parcelle]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="id_parcelle"
+                      externalMetadataColumnId="Package\DIM_PARCELLE\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[id_parcelle]"
+                      lineageId="Package\DIM_PARCELLE\Trier.Outputs[Sortie de tri].Columns[id_parcelle]" />
+                    <inputColumn
+                      refId="Package\DIM_PARCELLE\Destination OLE DB.Inputs[Entrée de destination OLE DB].Columns[ancien_id_parcelle]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="ancien_id_parcelle"
+                      externalMetadataColumnId="Package\DIM_PARCELLE\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[ancien_id_parcelle]"
+                      lineageId="Package\DIM_PARCELLE\Trier.Outputs[Sortie de tri].Columns[ancien_id_parcelle]" />
+                    <inputColumn
+                      refId="Package\DIM_PARCELLE\Destination OLE DB.Inputs[Entrée de destination OLE DB].Columns[lot_1_surface_terrain]"
+                      cachedDataType="r8"
+                      cachedName="lot_1_surface_terrain"
+                      externalMetadataColumnId="Package\DIM_PARCELLE\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[lot_1_surface_terrain]"
+                      lineageId="Package\DIM_PARCELLE\Trier.Outputs[Sortie de tri].Columns[lot_1_surface_terrain]" />
+                    <inputColumn
+                      refId="Package\DIM_PARCELLE\Destination OLE DB.Inputs[Entrée de destination OLE DB].Columns[lot_2_surface_terrain]"
+                      cachedDataType="r8"
+                      cachedName="lot_2_surface_terrain"
+                      externalMetadataColumnId="Package\DIM_PARCELLE\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[lot_2_surface_terrain]"
+                      lineageId="Package\DIM_PARCELLE\Trier.Outputs[Sortie de tri].Columns[lot_2_surface_terrain]" />
+                    <inputColumn
+                      refId="Package\DIM_PARCELLE\Destination OLE DB.Inputs[Entrée de destination OLE DB].Columns[lot_3_surface_terrain]"
+                      cachedDataType="r8"
+                      cachedName="lot_3_surface_terrain"
+                      externalMetadataColumnId="Package\DIM_PARCELLE\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[lot_3_surface_terrain]"
+                      lineageId="Package\DIM_PARCELLE\Trier.Outputs[Sortie de tri].Columns[lot_3_surface_terrain]" />
+                    <inputColumn
+                      refId="Package\DIM_PARCELLE\Destination OLE DB.Inputs[Entrée de destination OLE DB].Columns[lot_4_surface_terrain]"
+                      cachedDataType="r8"
+                      cachedName="lot_4_surface_terrain"
+                      externalMetadataColumnId="Package\DIM_PARCELLE\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[lot_4_surface_terrain]"
+                      lineageId="Package\DIM_PARCELLE\Trier.Outputs[Sortie de tri].Columns[lot_4_surface_terrain]" />
+                    <inputColumn
+                      refId="Package\DIM_PARCELLE\Destination OLE DB.Inputs[Entrée de destination OLE DB].Columns[lot_5_surface_terrain]"
+                      cachedDataType="r8"
+                      cachedName="lot_5_surface_terrain"
+                      externalMetadataColumnId="Package\DIM_PARCELLE\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[lot_5_surface_terrain]"
+                      lineageId="Package\DIM_PARCELLE\Trier.Outputs[Sortie de tri].Columns[lot_5_surface_terrain]" />
+                    <inputColumn
+                      refId="Package\DIM_PARCELLE\Destination OLE DB.Inputs[Entrée de destination OLE DB].Columns[lot_1_numero]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="lot_1_numero"
+                      externalMetadataColumnId="Package\DIM_PARCELLE\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[lot_1_numero]"
+                      lineageId="Package\DIM_PARCELLE\Trier.Outputs[Sortie de tri].Columns[lot_1_numero]" />
+                    <inputColumn
+                      refId="Package\DIM_PARCELLE\Destination OLE DB.Inputs[Entrée de destination OLE DB].Columns[lot_2_numero]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="lot_2_numero"
+                      externalMetadataColumnId="Package\DIM_PARCELLE\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[lot_2_numero]"
+                      lineageId="Package\DIM_PARCELLE\Trier.Outputs[Sortie de tri].Columns[lot_2_numero]" />
+                    <inputColumn
+                      refId="Package\DIM_PARCELLE\Destination OLE DB.Inputs[Entrée de destination OLE DB].Columns[lot_3_numero]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="lot_3_numero"
+                      externalMetadataColumnId="Package\DIM_PARCELLE\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[lot_3_numero]"
+                      lineageId="Package\DIM_PARCELLE\Trier.Outputs[Sortie de tri].Columns[lot_3_numero]" />
+                    <inputColumn
+                      refId="Package\DIM_PARCELLE\Destination OLE DB.Inputs[Entrée de destination OLE DB].Columns[lot_4_numero]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="lot_4_numero"
+                      externalMetadataColumnId="Package\DIM_PARCELLE\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[lot_4_numero]"
+                      lineageId="Package\DIM_PARCELLE\Trier.Outputs[Sortie de tri].Columns[lot_4_numero]" />
+                    <inputColumn
+                      refId="Package\DIM_PARCELLE\Destination OLE DB.Inputs[Entrée de destination OLE DB].Columns[lot_5_numero]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="lot_5_numero"
+                      externalMetadataColumnId="Package\DIM_PARCELLE\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[lot_5_numero]"
+                      lineageId="Package\DIM_PARCELLE\Trier.Outputs[Sortie de tri].Columns[lot_5_numero]" />
+                    <inputColumn
+                      refId="Package\DIM_PARCELLE\Destination OLE DB.Inputs[Entrée de destination OLE DB].Columns[code_nature_culture]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="code_nature_culture"
+                      externalMetadataColumnId="Package\DIM_PARCELLE\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[code_nature_culture]"
+                      lineageId="Package\DIM_PARCELLE\Trier.Outputs[Sortie de tri].Columns[code_nature_culture]" />
+                    <inputColumn
+                      refId="Package\DIM_PARCELLE\Destination OLE DB.Inputs[Entrée de destination OLE DB].Columns[nature_culture]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="200"
+                      cachedName="nature_culture"
+                      externalMetadataColumnId="Package\DIM_PARCELLE\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[nature_culture]"
+                      lineageId="Package\DIM_PARCELLE\Trier.Outputs[Sortie de tri].Columns[nature_culture]" />
+                    <inputColumn
+                      refId="Package\DIM_PARCELLE\Destination OLE DB.Inputs[Entrée de destination OLE DB].Columns[code_nature_culture_special]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="code_nature_culture_special"
+                      externalMetadataColumnId="Package\DIM_PARCELLE\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[code_nature_culture_special]"
+                      lineageId="Package\DIM_PARCELLE\Trier.Outputs[Sortie de tri].Columns[code_nature_culture_special]" />
+                    <inputColumn
+                      refId="Package\DIM_PARCELLE\Destination OLE DB.Inputs[Entrée de destination OLE DB].Columns[nature_culture_special]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="200"
+                      cachedName="nature_culture_special"
+                      externalMetadataColumnId="Package\DIM_PARCELLE\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[nature_culture_special]"
+                      lineageId="Package\DIM_PARCELLE\Trier.Outputs[Sortie de tri].Columns[nature_culture_special]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DIM_PARCELLE\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[n_parcelle]"
+                      dataType="i4"
+                      name="n_parcelle" />
+                    <externalMetadataColumn
+                      refId="Package\DIM_PARCELLE\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[id_parcelle]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="id_parcelle" />
+                    <externalMetadataColumn
+                      refId="Package\DIM_PARCELLE\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[ancien_id_parcelle]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="ancien_id_parcelle" />
+                    <externalMetadataColumn
+                      refId="Package\DIM_PARCELLE\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[lot_1_surface_terrain]"
+                      dataType="r8"
+                      name="lot_1_surface_terrain" />
+                    <externalMetadataColumn
+                      refId="Package\DIM_PARCELLE\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[lot_2_surface_terrain]"
+                      dataType="r8"
+                      name="lot_2_surface_terrain" />
+                    <externalMetadataColumn
+                      refId="Package\DIM_PARCELLE\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[lot_3_surface_terrain]"
+                      dataType="r8"
+                      name="lot_3_surface_terrain" />
+                    <externalMetadataColumn
+                      refId="Package\DIM_PARCELLE\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[lot_4_surface_terrain]"
+                      dataType="r8"
+                      name="lot_4_surface_terrain" />
+                    <externalMetadataColumn
+                      refId="Package\DIM_PARCELLE\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[lot_5_surface_terrain]"
+                      dataType="r8"
+                      name="lot_5_surface_terrain" />
+                    <externalMetadataColumn
+                      refId="Package\DIM_PARCELLE\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[lot_1_numero]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="lot_1_numero" />
+                    <externalMetadataColumn
+                      refId="Package\DIM_PARCELLE\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[lot_2_numero]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="lot_2_numero" />
+                    <externalMetadataColumn
+                      refId="Package\DIM_PARCELLE\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[lot_3_numero]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="lot_3_numero" />
+                    <externalMetadataColumn
+                      refId="Package\DIM_PARCELLE\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[lot_4_numero]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="lot_4_numero" />
+                    <externalMetadataColumn
+                      refId="Package\DIM_PARCELLE\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[lot_5_numero]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="lot_5_numero" />
+                    <externalMetadataColumn
+                      refId="Package\DIM_PARCELLE\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[code_nature_culture]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="code_nature_culture" />
+                    <externalMetadataColumn
+                      refId="Package\DIM_PARCELLE\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[nature_culture]"
+                      codePage="1252"
+                      dataType="str"
+                      length="200"
+                      name="nature_culture" />
+                    <externalMetadataColumn
+                      refId="Package\DIM_PARCELLE\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[code_nature_culture_special]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="code_nature_culture_special" />
+                    <externalMetadataColumn
+                      refId="Package\DIM_PARCELLE\Destination OLE DB.Inputs[Entrée de destination OLE DB].ExternalColumns[nature_culture_special]"
+                      codePage="1252"
+                      dataType="str"
+                      length="200"
+                      name="nature_culture_special" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DIM_PARCELLE\Destination OLE DB.Outputs[Sortie d'erreur de destination OLE DB]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Sortie d'erreur de destination OLE DB"
+                  synchronousInputId="Package\DIM_PARCELLE\Destination OLE DB.Inputs[Entrée de destination OLE DB]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DIM_PARCELLE\Destination OLE DB.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DIM_PARCELLE\Destination OLE DB.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DIM_PARCELLE\Destination OLE DB.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DIM_PARCELLE\Destination OLE DB.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DIM_PARCELLE\Source OLE DB"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="Source OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;7"
+              description="Source OLE DB"
+              name="Source OLE DB"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Nombre de secondes avant l'expiration d'une commande.  Une valeur égale à 0 indique un délai d'expiration infini."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie la variable contenant le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Commande SQL à exécuter."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=17.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT
+    p.n_parcelle,
+    p.id_parcelle,
+    p.ancien_id_parcelle,
+    p.lot_1_surface_terrain,
+    p.lot_2_surface_terrain,
+    p.lot_3_surface_terrain,
+    p.lot_4_surface_terrain,
+    p.lot_5_surface_terrain,
+    p.lot_1_numero,
+    p.lot_2_numero,
+    p.lot_3_numero,
+    p.lot_4_numero,
+    p.lot_5_numero,
+    MAX(nc.code_nature_culture)               AS code_nature_culture,
+    MAX(nc.nature_culture)                    AS nature_culture,
+    MAX(ncs.code_nature_culture_speciale)     AS code_nature_culture_special,
+    MAX(ncs.nature_culture_speciale)          AS nature_culture_special
+FROM Ventes_fonciere.dbo.PARCELLE p
+LEFT JOIN Ventes_fonciere.dbo.Parcelle_nat_cult pnc
+    ON p.n_parcelle = pnc.n_parcelle
+LEFT JOIN Ventes_fonciere.dbo.Nature_culture nc
+    ON pnc.id_nature_culture = nc.id_nature_culture
+LEFT JOIN Ventes_fonciere.dbo.Parcelle_nat_cult_spe pncs
+    ON p.n_parcelle = pncs.n_parcelle
+LEFT JOIN Ventes_fonciere.dbo.Nature_culture_speciale ncs
+    ON pncs.id_nature_culture_speciale = ncs.id_nature_culture_speciale
+GROUP BY
+    p.n_parcelle,
+    p.id_parcelle,
+    p.ancien_id_parcelle,
+    p.lot_1_surface_terrain,
+    p.lot_2_surface_terrain,
+    p.lot_3_surface_terrain,
+    p.lot_4_surface_terrain,
+    p.lot_5_surface_terrain,
+    p.lot_1_numero,
+    p.lot_2_numero,
+    p.lot_3_numero,
+    p.lot_4_numero,
+    p.lot_5_numero</property>
+                <property
+                  dataType="System.String"
+                  description="Variable contenant la commande SQL à exécuter."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie la page de codes de la colonne à utiliser lorsque les informations de page de codes ne sont pas disponibles à partir de la source de données."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Force l'utilisation de la valeur de propriété DefaultCodePage lors de la description des données caractères."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie le mode utilisé pour accéder à la base de données."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="Mappages entre les paramètres de la commande SQL et les variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DIM_PARCELLE\Source OLE DB.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Connexion_Ventes_Fonciere]"
+                  connectionManagerRefId="Package.ConnectionManagers[Connexion_Ventes_Fonciere]"
+                  description="Connexion OLE DB en cours d'exécution utilisée pour accéder à la base de données."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\DIM_PARCELLE\Source OLE DB.Outputs[Sortie de source OLE DB]"
+                  name="Sortie de source OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DIM_PARCELLE\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[n_parcelle]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DIM_PARCELLE\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[n_parcelle]"
+                      lineageId="Package\DIM_PARCELLE\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[n_parcelle]"
+                      name="n_parcelle"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DIM_PARCELLE\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[id_parcelle]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DIM_PARCELLE\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[id_parcelle]"
+                      length="100"
+                      lineageId="Package\DIM_PARCELLE\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[id_parcelle]"
+                      name="id_parcelle"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DIM_PARCELLE\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[ancien_id_parcelle]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DIM_PARCELLE\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[ancien_id_parcelle]"
+                      length="100"
+                      lineageId="Package\DIM_PARCELLE\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[ancien_id_parcelle]"
+                      name="ancien_id_parcelle"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DIM_PARCELLE\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[lot_1_surface_terrain]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DIM_PARCELLE\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[lot_1_surface_terrain]"
+                      lineageId="Package\DIM_PARCELLE\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[lot_1_surface_terrain]"
+                      name="lot_1_surface_terrain"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DIM_PARCELLE\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[lot_2_surface_terrain]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DIM_PARCELLE\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[lot_2_surface_terrain]"
+                      lineageId="Package\DIM_PARCELLE\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[lot_2_surface_terrain]"
+                      name="lot_2_surface_terrain"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DIM_PARCELLE\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[lot_3_surface_terrain]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DIM_PARCELLE\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[lot_3_surface_terrain]"
+                      lineageId="Package\DIM_PARCELLE\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[lot_3_surface_terrain]"
+                      name="lot_3_surface_terrain"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DIM_PARCELLE\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[lot_4_surface_terrain]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DIM_PARCELLE\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[lot_4_surface_terrain]"
+                      lineageId="Package\DIM_PARCELLE\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[lot_4_surface_terrain]"
+                      name="lot_4_surface_terrain"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DIM_PARCELLE\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[lot_5_surface_terrain]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DIM_PARCELLE\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[lot_5_surface_terrain]"
+                      lineageId="Package\DIM_PARCELLE\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[lot_5_surface_terrain]"
+                      name="lot_5_surface_terrain"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DIM_PARCELLE\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[lot_1_numero]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DIM_PARCELLE\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[lot_1_numero]"
+                      length="100"
+                      lineageId="Package\DIM_PARCELLE\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[lot_1_numero]"
+                      name="lot_1_numero"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DIM_PARCELLE\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[lot_2_numero]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DIM_PARCELLE\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[lot_2_numero]"
+                      length="100"
+                      lineageId="Package\DIM_PARCELLE\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[lot_2_numero]"
+                      name="lot_2_numero"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DIM_PARCELLE\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[lot_3_numero]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DIM_PARCELLE\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[lot_3_numero]"
+                      length="100"
+                      lineageId="Package\DIM_PARCELLE\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[lot_3_numero]"
+                      name="lot_3_numero"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DIM_PARCELLE\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[lot_4_numero]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DIM_PARCELLE\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[lot_4_numero]"
+                      length="100"
+                      lineageId="Package\DIM_PARCELLE\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[lot_4_numero]"
+                      name="lot_4_numero"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DIM_PARCELLE\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[lot_5_numero]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DIM_PARCELLE\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[lot_5_numero]"
+                      length="100"
+                      lineageId="Package\DIM_PARCELLE\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[lot_5_numero]"
+                      name="lot_5_numero"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DIM_PARCELLE\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[code_nature_culture]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DIM_PARCELLE\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[code_nature_culture]"
+                      length="50"
+                      lineageId="Package\DIM_PARCELLE\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[code_nature_culture]"
+                      name="code_nature_culture"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DIM_PARCELLE\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[nature_culture]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DIM_PARCELLE\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[nature_culture]"
+                      length="200"
+                      lineageId="Package\DIM_PARCELLE\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[nature_culture]"
+                      name="nature_culture"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DIM_PARCELLE\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[code_nature_culture_special]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DIM_PARCELLE\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[code_nature_culture_special]"
+                      length="50"
+                      lineageId="Package\DIM_PARCELLE\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[code_nature_culture_special]"
+                      name="code_nature_culture_special"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DIM_PARCELLE\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[nature_culture_special]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DIM_PARCELLE\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[nature_culture_special]"
+                      length="200"
+                      lineageId="Package\DIM_PARCELLE\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[nature_culture_special]"
+                      name="nature_culture_special"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DIM_PARCELLE\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[n_parcelle]"
+                      dataType="i4"
+                      name="n_parcelle" />
+                    <externalMetadataColumn
+                      refId="Package\DIM_PARCELLE\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[id_parcelle]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="id_parcelle" />
+                    <externalMetadataColumn
+                      refId="Package\DIM_PARCELLE\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[ancien_id_parcelle]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="ancien_id_parcelle" />
+                    <externalMetadataColumn
+                      refId="Package\DIM_PARCELLE\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[lot_1_surface_terrain]"
+                      dataType="r8"
+                      name="lot_1_surface_terrain" />
+                    <externalMetadataColumn
+                      refId="Package\DIM_PARCELLE\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[lot_2_surface_terrain]"
+                      dataType="r8"
+                      name="lot_2_surface_terrain" />
+                    <externalMetadataColumn
+                      refId="Package\DIM_PARCELLE\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[lot_3_surface_terrain]"
+                      dataType="r8"
+                      name="lot_3_surface_terrain" />
+                    <externalMetadataColumn
+                      refId="Package\DIM_PARCELLE\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[lot_4_surface_terrain]"
+                      dataType="r8"
+                      name="lot_4_surface_terrain" />
+                    <externalMetadataColumn
+                      refId="Package\DIM_PARCELLE\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[lot_5_surface_terrain]"
+                      dataType="r8"
+                      name="lot_5_surface_terrain" />
+                    <externalMetadataColumn
+                      refId="Package\DIM_PARCELLE\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[lot_1_numero]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="lot_1_numero" />
+                    <externalMetadataColumn
+                      refId="Package\DIM_PARCELLE\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[lot_2_numero]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="lot_2_numero" />
+                    <externalMetadataColumn
+                      refId="Package\DIM_PARCELLE\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[lot_3_numero]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="lot_3_numero" />
+                    <externalMetadataColumn
+                      refId="Package\DIM_PARCELLE\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[lot_4_numero]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="lot_4_numero" />
+                    <externalMetadataColumn
+                      refId="Package\DIM_PARCELLE\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[lot_5_numero]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="lot_5_numero" />
+                    <externalMetadataColumn
+                      refId="Package\DIM_PARCELLE\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[code_nature_culture]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="code_nature_culture" />
+                    <externalMetadataColumn
+                      refId="Package\DIM_PARCELLE\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[nature_culture]"
+                      codePage="1252"
+                      dataType="str"
+                      length="200"
+                      name="nature_culture" />
+                    <externalMetadataColumn
+                      refId="Package\DIM_PARCELLE\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[code_nature_culture_special]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="code_nature_culture_special" />
+                    <externalMetadataColumn
+                      refId="Package\DIM_PARCELLE\Source OLE DB.Outputs[Sortie de source OLE DB].ExternalColumns[nature_culture_special]"
+                      codePage="1252"
+                      dataType="str"
+                      length="200"
+                      name="nature_culture_special" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\DIM_PARCELLE\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB]"
+                  isErrorOut="true"
+                  name="Sortie d'erreur de source OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DIM_PARCELLE\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[n_parcelle]"
+                      dataType="i4"
+                      lineageId="Package\DIM_PARCELLE\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[n_parcelle]"
+                      name="n_parcelle" />
+                    <outputColumn
+                      refId="Package\DIM_PARCELLE\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[id_parcelle]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      lineageId="Package\DIM_PARCELLE\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[id_parcelle]"
+                      name="id_parcelle" />
+                    <outputColumn
+                      refId="Package\DIM_PARCELLE\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[ancien_id_parcelle]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      lineageId="Package\DIM_PARCELLE\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[ancien_id_parcelle]"
+                      name="ancien_id_parcelle" />
+                    <outputColumn
+                      refId="Package\DIM_PARCELLE\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[lot_1_surface_terrain]"
+                      dataType="r8"
+                      lineageId="Package\DIM_PARCELLE\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[lot_1_surface_terrain]"
+                      name="lot_1_surface_terrain" />
+                    <outputColumn
+                      refId="Package\DIM_PARCELLE\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[lot_2_surface_terrain]"
+                      dataType="r8"
+                      lineageId="Package\DIM_PARCELLE\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[lot_2_surface_terrain]"
+                      name="lot_2_surface_terrain" />
+                    <outputColumn
+                      refId="Package\DIM_PARCELLE\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[lot_3_surface_terrain]"
+                      dataType="r8"
+                      lineageId="Package\DIM_PARCELLE\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[lot_3_surface_terrain]"
+                      name="lot_3_surface_terrain" />
+                    <outputColumn
+                      refId="Package\DIM_PARCELLE\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[lot_4_surface_terrain]"
+                      dataType="r8"
+                      lineageId="Package\DIM_PARCELLE\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[lot_4_surface_terrain]"
+                      name="lot_4_surface_terrain" />
+                    <outputColumn
+                      refId="Package\DIM_PARCELLE\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[lot_5_surface_terrain]"
+                      dataType="r8"
+                      lineageId="Package\DIM_PARCELLE\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[lot_5_surface_terrain]"
+                      name="lot_5_surface_terrain" />
+                    <outputColumn
+                      refId="Package\DIM_PARCELLE\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[lot_1_numero]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      lineageId="Package\DIM_PARCELLE\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[lot_1_numero]"
+                      name="lot_1_numero" />
+                    <outputColumn
+                      refId="Package\DIM_PARCELLE\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[lot_2_numero]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      lineageId="Package\DIM_PARCELLE\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[lot_2_numero]"
+                      name="lot_2_numero" />
+                    <outputColumn
+                      refId="Package\DIM_PARCELLE\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[lot_3_numero]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      lineageId="Package\DIM_PARCELLE\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[lot_3_numero]"
+                      name="lot_3_numero" />
+                    <outputColumn
+                      refId="Package\DIM_PARCELLE\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[lot_4_numero]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      lineageId="Package\DIM_PARCELLE\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[lot_4_numero]"
+                      name="lot_4_numero" />
+                    <outputColumn
+                      refId="Package\DIM_PARCELLE\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[lot_5_numero]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      lineageId="Package\DIM_PARCELLE\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[lot_5_numero]"
+                      name="lot_5_numero" />
+                    <outputColumn
+                      refId="Package\DIM_PARCELLE\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[code_nature_culture]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\DIM_PARCELLE\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[code_nature_culture]"
+                      name="code_nature_culture" />
+                    <outputColumn
+                      refId="Package\DIM_PARCELLE\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[nature_culture]"
+                      codePage="1252"
+                      dataType="str"
+                      length="200"
+                      lineageId="Package\DIM_PARCELLE\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[nature_culture]"
+                      name="nature_culture" />
+                    <outputColumn
+                      refId="Package\DIM_PARCELLE\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[code_nature_culture_special]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\DIM_PARCELLE\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[code_nature_culture_special]"
+                      name="code_nature_culture_special" />
+                    <outputColumn
+                      refId="Package\DIM_PARCELLE\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[nature_culture_special]"
+                      codePage="1252"
+                      dataType="str"
+                      length="200"
+                      lineageId="Package\DIM_PARCELLE\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[nature_culture_special]"
+                      name="nature_culture_special" />
+                    <outputColumn
+                      refId="Package\DIM_PARCELLE\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DIM_PARCELLE\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DIM_PARCELLE\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DIM_PARCELLE\Source OLE DB.Outputs[Sortie d'erreur de source OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DIM_PARCELLE\Trier"
+              componentClassID="Microsoft.Sort"
+              contactInfo="Trier;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;1"
+              description="Trie les données d'entrée en ordre croissant ou décroissant lorsque le tri ne peut pas être effectué à la source. Par exemple, triez les données de vente par 'id de client' avant leur enregistrement dans un fichier plat et leur diffusion dans un autre service. Remarque : nous ne recommandons pas cette transformation dans le cas de flux de données volumineux."
+              name="Trier"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Indique si la transformation de tri supprime les lignes comportant des valeurs de tri en double."
+                  name="EliminateDuplicates">true</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie le nombre maximal de threads à utiliser pour le tri."
+                  expressionType="Notify"
+                  name="MaximumThreads">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\DIM_PARCELLE\Trier.Inputs[Entrée de tri]"
+                  name="Entrée de tri">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DIM_PARCELLE\Trier.Inputs[Entrée de tri].Columns[n_parcelle]"
+                      cachedDataType="i4"
+                      cachedName="n_parcelle"
+                      lineageId="Package\DIM_PARCELLE\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[n_parcelle]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie les options de comparaison pour les données caractères."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie l'ordre de tri de la colonne."
+                          name="NewSortKeyPosition">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DIM_PARCELLE\Trier.Inputs[Entrée de tri].Columns[id_parcelle]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="id_parcelle"
+                      lineageId="Package\DIM_PARCELLE\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[id_parcelle]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie les options de comparaison pour les données caractères."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie l'ordre de tri de la colonne."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DIM_PARCELLE\Trier.Inputs[Entrée de tri].Columns[ancien_id_parcelle]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="ancien_id_parcelle"
+                      lineageId="Package\DIM_PARCELLE\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[ancien_id_parcelle]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie les options de comparaison pour les données caractères."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie l'ordre de tri de la colonne."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DIM_PARCELLE\Trier.Inputs[Entrée de tri].Columns[lot_1_surface_terrain]"
+                      cachedDataType="r8"
+                      cachedName="lot_1_surface_terrain"
+                      lineageId="Package\DIM_PARCELLE\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[lot_1_surface_terrain]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie les options de comparaison pour les données caractères."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie l'ordre de tri de la colonne."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DIM_PARCELLE\Trier.Inputs[Entrée de tri].Columns[lot_2_surface_terrain]"
+                      cachedDataType="r8"
+                      cachedName="lot_2_surface_terrain"
+                      lineageId="Package\DIM_PARCELLE\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[lot_2_surface_terrain]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie les options de comparaison pour les données caractères."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie l'ordre de tri de la colonne."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DIM_PARCELLE\Trier.Inputs[Entrée de tri].Columns[lot_3_surface_terrain]"
+                      cachedDataType="r8"
+                      cachedName="lot_3_surface_terrain"
+                      lineageId="Package\DIM_PARCELLE\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[lot_3_surface_terrain]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie les options de comparaison pour les données caractères."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie l'ordre de tri de la colonne."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DIM_PARCELLE\Trier.Inputs[Entrée de tri].Columns[lot_4_surface_terrain]"
+                      cachedDataType="r8"
+                      cachedName="lot_4_surface_terrain"
+                      lineageId="Package\DIM_PARCELLE\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[lot_4_surface_terrain]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie les options de comparaison pour les données caractères."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie l'ordre de tri de la colonne."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DIM_PARCELLE\Trier.Inputs[Entrée de tri].Columns[lot_5_surface_terrain]"
+                      cachedDataType="r8"
+                      cachedName="lot_5_surface_terrain"
+                      lineageId="Package\DIM_PARCELLE\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[lot_5_surface_terrain]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie les options de comparaison pour les données caractères."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie l'ordre de tri de la colonne."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DIM_PARCELLE\Trier.Inputs[Entrée de tri].Columns[lot_1_numero]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="lot_1_numero"
+                      lineageId="Package\DIM_PARCELLE\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[lot_1_numero]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie les options de comparaison pour les données caractères."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie l'ordre de tri de la colonne."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DIM_PARCELLE\Trier.Inputs[Entrée de tri].Columns[lot_2_numero]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="lot_2_numero"
+                      lineageId="Package\DIM_PARCELLE\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[lot_2_numero]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie les options de comparaison pour les données caractères."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie l'ordre de tri de la colonne."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DIM_PARCELLE\Trier.Inputs[Entrée de tri].Columns[lot_3_numero]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="lot_3_numero"
+                      lineageId="Package\DIM_PARCELLE\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[lot_3_numero]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie les options de comparaison pour les données caractères."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie l'ordre de tri de la colonne."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DIM_PARCELLE\Trier.Inputs[Entrée de tri].Columns[lot_4_numero]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="lot_4_numero"
+                      lineageId="Package\DIM_PARCELLE\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[lot_4_numero]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie les options de comparaison pour les données caractères."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie l'ordre de tri de la colonne."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DIM_PARCELLE\Trier.Inputs[Entrée de tri].Columns[lot_5_numero]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="lot_5_numero"
+                      lineageId="Package\DIM_PARCELLE\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[lot_5_numero]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie les options de comparaison pour les données caractères."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie l'ordre de tri de la colonne."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DIM_PARCELLE\Trier.Inputs[Entrée de tri].Columns[code_nature_culture]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="code_nature_culture"
+                      lineageId="Package\DIM_PARCELLE\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[code_nature_culture]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie les options de comparaison pour les données caractères."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie l'ordre de tri de la colonne."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DIM_PARCELLE\Trier.Inputs[Entrée de tri].Columns[nature_culture]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="200"
+                      cachedName="nature_culture"
+                      lineageId="Package\DIM_PARCELLE\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[nature_culture]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie les options de comparaison pour les données caractères."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie l'ordre de tri de la colonne."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DIM_PARCELLE\Trier.Inputs[Entrée de tri].Columns[code_nature_culture_special]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="code_nature_culture_special"
+                      lineageId="Package\DIM_PARCELLE\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[code_nature_culture_special]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie les options de comparaison pour les données caractères."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie l'ordre de tri de la colonne."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DIM_PARCELLE\Trier.Inputs[Entrée de tri].Columns[nature_culture_special]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="200"
+                      cachedName="nature_culture_special"
+                      lineageId="Package\DIM_PARCELLE\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[nature_culture_special]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie les options de comparaison pour les données caractères."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie l'ordre de tri de la colonne."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DIM_PARCELLE\Trier.Outputs[Sortie de tri]"
+                  isSorted="true"
+                  name="Sortie de tri">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DIM_PARCELLE\Trier.Outputs[Sortie de tri].Columns[n_parcelle]"
+                      dataType="i4"
+                      lineageId="Package\DIM_PARCELLE\Trier.Outputs[Sortie de tri].Columns[n_parcelle]"
+                      name="n_parcelle"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Spécifie l'identificateur de traçabilité de la colonne d'entrée associé à cette colonne de sortie."
+                          name="SortColumnId">#{Package\DIM_PARCELLE\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[n_parcelle]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DIM_PARCELLE\Trier.Outputs[Sortie de tri].Columns[id_parcelle]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      lineageId="Package\DIM_PARCELLE\Trier.Outputs[Sortie de tri].Columns[id_parcelle]"
+                      name="id_parcelle">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Spécifie l'identificateur de traçabilité de la colonne d'entrée associé à cette colonne de sortie."
+                          name="SortColumnId">#{Package\DIM_PARCELLE\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[id_parcelle]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DIM_PARCELLE\Trier.Outputs[Sortie de tri].Columns[ancien_id_parcelle]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      lineageId="Package\DIM_PARCELLE\Trier.Outputs[Sortie de tri].Columns[ancien_id_parcelle]"
+                      name="ancien_id_parcelle">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Spécifie l'identificateur de traçabilité de la colonne d'entrée associé à cette colonne de sortie."
+                          name="SortColumnId">#{Package\DIM_PARCELLE\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[ancien_id_parcelle]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DIM_PARCELLE\Trier.Outputs[Sortie de tri].Columns[lot_1_surface_terrain]"
+                      dataType="r8"
+                      lineageId="Package\DIM_PARCELLE\Trier.Outputs[Sortie de tri].Columns[lot_1_surface_terrain]"
+                      name="lot_1_surface_terrain">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Spécifie l'identificateur de traçabilité de la colonne d'entrée associé à cette colonne de sortie."
+                          name="SortColumnId">#{Package\DIM_PARCELLE\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[lot_1_surface_terrain]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DIM_PARCELLE\Trier.Outputs[Sortie de tri].Columns[lot_2_surface_terrain]"
+                      dataType="r8"
+                      lineageId="Package\DIM_PARCELLE\Trier.Outputs[Sortie de tri].Columns[lot_2_surface_terrain]"
+                      name="lot_2_surface_terrain">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Spécifie l'identificateur de traçabilité de la colonne d'entrée associé à cette colonne de sortie."
+                          name="SortColumnId">#{Package\DIM_PARCELLE\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[lot_2_surface_terrain]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DIM_PARCELLE\Trier.Outputs[Sortie de tri].Columns[lot_3_surface_terrain]"
+                      dataType="r8"
+                      lineageId="Package\DIM_PARCELLE\Trier.Outputs[Sortie de tri].Columns[lot_3_surface_terrain]"
+                      name="lot_3_surface_terrain">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Spécifie l'identificateur de traçabilité de la colonne d'entrée associé à cette colonne de sortie."
+                          name="SortColumnId">#{Package\DIM_PARCELLE\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[lot_3_surface_terrain]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DIM_PARCELLE\Trier.Outputs[Sortie de tri].Columns[lot_4_surface_terrain]"
+                      dataType="r8"
+                      lineageId="Package\DIM_PARCELLE\Trier.Outputs[Sortie de tri].Columns[lot_4_surface_terrain]"
+                      name="lot_4_surface_terrain">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Spécifie l'identificateur de traçabilité de la colonne d'entrée associé à cette colonne de sortie."
+                          name="SortColumnId">#{Package\DIM_PARCELLE\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[lot_4_surface_terrain]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DIM_PARCELLE\Trier.Outputs[Sortie de tri].Columns[lot_5_surface_terrain]"
+                      dataType="r8"
+                      lineageId="Package\DIM_PARCELLE\Trier.Outputs[Sortie de tri].Columns[lot_5_surface_terrain]"
+                      name="lot_5_surface_terrain">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Spécifie l'identificateur de traçabilité de la colonne d'entrée associé à cette colonne de sortie."
+                          name="SortColumnId">#{Package\DIM_PARCELLE\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[lot_5_surface_terrain]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DIM_PARCELLE\Trier.Outputs[Sortie de tri].Columns[lot_1_numero]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      lineageId="Package\DIM_PARCELLE\Trier.Outputs[Sortie de tri].Columns[lot_1_numero]"
+                      name="lot_1_numero">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Spécifie l'identificateur de traçabilité de la colonne d'entrée associé à cette colonne de sortie."
+                          name="SortColumnId">#{Package\DIM_PARCELLE\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[lot_1_numero]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DIM_PARCELLE\Trier.Outputs[Sortie de tri].Columns[lot_2_numero]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      lineageId="Package\DIM_PARCELLE\Trier.Outputs[Sortie de tri].Columns[lot_2_numero]"
+                      name="lot_2_numero">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Spécifie l'identificateur de traçabilité de la colonne d'entrée associé à cette colonne de sortie."
+                          name="SortColumnId">#{Package\DIM_PARCELLE\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[lot_2_numero]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DIM_PARCELLE\Trier.Outputs[Sortie de tri].Columns[lot_3_numero]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      lineageId="Package\DIM_PARCELLE\Trier.Outputs[Sortie de tri].Columns[lot_3_numero]"
+                      name="lot_3_numero">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Spécifie l'identificateur de traçabilité de la colonne d'entrée associé à cette colonne de sortie."
+                          name="SortColumnId">#{Package\DIM_PARCELLE\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[lot_3_numero]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DIM_PARCELLE\Trier.Outputs[Sortie de tri].Columns[lot_4_numero]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      lineageId="Package\DIM_PARCELLE\Trier.Outputs[Sortie de tri].Columns[lot_4_numero]"
+                      name="lot_4_numero">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Spécifie l'identificateur de traçabilité de la colonne d'entrée associé à cette colonne de sortie."
+                          name="SortColumnId">#{Package\DIM_PARCELLE\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[lot_4_numero]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DIM_PARCELLE\Trier.Outputs[Sortie de tri].Columns[lot_5_numero]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      lineageId="Package\DIM_PARCELLE\Trier.Outputs[Sortie de tri].Columns[lot_5_numero]"
+                      name="lot_5_numero">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Spécifie l'identificateur de traçabilité de la colonne d'entrée associé à cette colonne de sortie."
+                          name="SortColumnId">#{Package\DIM_PARCELLE\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[lot_5_numero]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DIM_PARCELLE\Trier.Outputs[Sortie de tri].Columns[code_nature_culture]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\DIM_PARCELLE\Trier.Outputs[Sortie de tri].Columns[code_nature_culture]"
+                      name="code_nature_culture">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Spécifie l'identificateur de traçabilité de la colonne d'entrée associé à cette colonne de sortie."
+                          name="SortColumnId">#{Package\DIM_PARCELLE\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[code_nature_culture]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DIM_PARCELLE\Trier.Outputs[Sortie de tri].Columns[nature_culture]"
+                      codePage="1252"
+                      dataType="str"
+                      length="200"
+                      lineageId="Package\DIM_PARCELLE\Trier.Outputs[Sortie de tri].Columns[nature_culture]"
+                      name="nature_culture">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Spécifie l'identificateur de traçabilité de la colonne d'entrée associé à cette colonne de sortie."
+                          name="SortColumnId">#{Package\DIM_PARCELLE\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[nature_culture]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DIM_PARCELLE\Trier.Outputs[Sortie de tri].Columns[code_nature_culture_special]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\DIM_PARCELLE\Trier.Outputs[Sortie de tri].Columns[code_nature_culture_special]"
+                      name="code_nature_culture_special">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Spécifie l'identificateur de traçabilité de la colonne d'entrée associé à cette colonne de sortie."
+                          name="SortColumnId">#{Package\DIM_PARCELLE\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[code_nature_culture_special]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DIM_PARCELLE\Trier.Outputs[Sortie de tri].Columns[nature_culture_special]"
+                      codePage="1252"
+                      dataType="str"
+                      length="200"
+                      lineageId="Package\DIM_PARCELLE\Trier.Outputs[Sortie de tri].Columns[nature_culture_special]"
+                      name="nature_culture_special">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Spécifie l'identificateur de traçabilité de la colonne d'entrée associé à cette colonne de sortie."
+                          name="SortColumnId">#{Package\DIM_PARCELLE\Source OLE DB.Outputs[Sortie de source OLE DB].Columns[nature_culture_special]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\DIM_PARCELLE.Paths[Sortie de source OLE DB]"
+              endId="Package\DIM_PARCELLE\Trier.Inputs[Entrée de tri]"
+              name="Sortie de source OLE DB"
+              startId="Package\DIM_PARCELLE\Source OLE DB.Outputs[Sortie de source OLE DB]" />
+            <path
+              refId="Package\DIM_PARCELLE.Paths[Sortie de tri]"
+              endId="Package\DIM_PARCELLE\Destination OLE DB.Inputs[Entrée de destination OLE DB]"
+              name="Sortie de tri"
+              startId="Package\DIM_PARCELLE\Trier.Outputs[Sortie de tri]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--Cette section CDATA contient des informations sur la disposition du package. Elle comprend des informations telles que les coordonnées (x,y), la largeur et la hauteur.-->
+<!--Si vous modifiez manuellement cette section et commettez une erreur, vous pouvez la supprimer. -->
+<!--Le package pourra toujours se charger normalement, mais les informations de disposition précédente seront perdues et le concepteur réorganisera automatiquement les éléments sur l'aire de conception.-->
+<Objects
+  Version="8">
+  <!--Chaque nœud ci-dessous contiendra des propriétés qui n'affectent pas le comportement d'exécution.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="181.5,41.5"
+          Id="Package\DIM_PARCELLE"
+          TopLeft="195.000000415104,82.5882352217259" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\DIM_PARCELLE">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="189.5,41.5"
+          Id="Package\DIM_PARCELLE\Source OLE DB"
+          TopLeft="125.000000266092,146.823529283068" />
+        <NodeLayout
+          Size="204,41.5"
+          Id="Package\DIM_PARCELLE\Destination OLE DB"
+          TopLeft="230.00000048961,451.941176074444" />
+        <NodeLayout
+          Size="100,41.5"
+          Id="Package\DIM_PARCELLE\Trier"
+          TopLeft="142.142857445442,272.235293879022" />
+        <EdgeLayout
+          Id="Package\DIM_PARCELLE.Paths[Sortie de source OLE DB]"
+          TopLeft="219.750000266092,188.323529283068">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-27.60714282065,83.911764595954"
+              Start="0,0"
+              End="-27.60714282065,76.411764595954">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,37.955882297977" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,37.955882297977"
+                    Point2="0,41.955882297977"
+                    Point3="-4,41.955882297977" />
+                  <mssgle:LineSegment
+                    End="-23.60714282065,41.955882297977" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-23.60714282065,41.955882297977"
+                    Point2="-27.60714282065,41.955882297977"
+                    Point3="-27.60714282065,45.955882297977" />
+                  <mssgle:LineSegment
+                    End="-27.60714282065,76.411764595954" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DIM_PARCELLE.Paths[Sortie de tri]"
+          TopLeft="192.142857445442,313.735293879022">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="139.857143044168,138.205882195422"
+              Start="0,0"
+              End="139.857143044168,130.705882195422">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,65.102941097711" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,65.102941097711"
+                    Point2="0,69.102941097711"
+                    Point3="4,69.102941097711" />
+                  <mssgle:LineSegment
+                    End="135.857143044168,69.102941097711" />
+                  <mssgle:CubicBezierSegment
+                    Point1="135.857143044168,69.102941097711"
+                    Point2="139.857143044168,69.102941097711"
+                    Point3="139.857143044168,73.102941097711" />
+                  <mssgle:LineSegment
+                    End="139.857143044168,130.705882195422" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\DIM_PARCELLE\Source OLE DB">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DIM_PARCELLE\Destination OLE DB">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

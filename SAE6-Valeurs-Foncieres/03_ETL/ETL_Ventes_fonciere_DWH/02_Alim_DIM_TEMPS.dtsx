@@ -1,0 +1,865 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="6/4/2026 11:57:36 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="ul5080"
+  DTS:CreatorName="ul5080\sql"
+  DTS:DTSID="{B12A3CE9-92E1-4EA9-A940-B2AF76B2F55D}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="17.0.1016.0"
+  DTS:LocaleID="1036"
+  DTS:ObjectName="Package1"
+  DTS:PackageType="5"
+  DTS:VersionBuild="20"
+  DTS:VersionGUID="{98AE8E27-9712-4652-A038-7CEA5478A683}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Connexion_BD_Ventes_Foncieres]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{B888B817-F7CD-4B2D-A5A5-2CBD7131DF35}"
+      DTS:ObjectName="Connexion_BD_Ventes_Foncieres">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=DESKTOP-PDTQGH1\SQLEXPRESS;Initial Catalog=Ventes_fonciere;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Auto Translate=False;Application Name=SSIS-Package1-{B888B817-F7CD-4B2D-A5A5-2CBD7131DF35}Connexion de données1;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Connexion_BD_Ventes_Fonciere_DWH]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{910F14E5-89F5-4862-A3E3-1CA5A739E26F}"
+      DTS:ObjectName="Connexion_BD_Ventes_Fonciere_DWH">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=DESKTOP-PDTQGH1\SQLEXPRESS;Initial Catalog=Ventes_fonciere_DWH;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Auto Translate=False;Application Name=SSIS-Package1-{910F14E5-89F5-4862-A3E3-1CA5A739E26F}Connexion de données;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\DIM_TEMPS"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Tâche de flux de données"
+      DTS:DTSID="{4B2F9309-73F8-4AA4-BD44-0FBFFB36A8E8}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="DIM_TEMPS"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\DIM_TEMPS\Destination DIM_TEMPS"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="Destination OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;4"
+              description="Destination OLE DB"
+              name="Destination DIM_TEMPS"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Nombre de secondes avant l'expiration d'une commande.  Une valeur égale à 0 indique un délai d'expiration infini."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                  name="OpenRowset">[dbo].[DIM_TEMPS]</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie la variable contenant le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Commande SQL à exécuter."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=17.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie la page de codes de la colonne à utiliser lorsque les informations de page de codes ne sont pas disponibles à partir de la source de données."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Force l'utilisation de la valeur de propriété DefaultCodePage lors de la description des données caractères."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie le mode utilisé pour accéder à la base de données."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indique si les valeurs fournies pour les colonnes d'identité seront copiées à la destination. Si la valeur est définie à False, les valeurs des colonnes d'identité seront générées automatiquement à la destination. Ne s'applique que si le chargement rapide est activé."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indique si les colonnes contenant la valeur NULL auront cette valeur NULL copiée à la destination. Si la valeur est définie à False, les colonnes contenant la valeur NULL auront leurs valeurs par défaut insérées à la destination. Ne s'applique que si le chargement rapide est activé."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie les options à utiliser avec le chargement rapide.  Ne s'applique que si le chargement rapide est activé."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie quand les validations sont émises pendant l'insertion des données.  Une valeur égale à 0 spécifie qu'une validation sera émise à la fin de l'insertion des données.  Ne s'applique que si le chargement rapide est activé."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DIM_TEMPS\Destination DIM_TEMPS.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Connexion_BD_Ventes_Fonciere_DWH]"
+                  connectionManagerRefId="Package.ConnectionManagers[Connexion_BD_Ventes_Fonciere_DWH]"
+                  description="Connexion OLE DB en cours d'exécution utilisée pour accéder à la base de données."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DIM_TEMPS\Destination DIM_TEMPS.Inputs[Entrée de destination OLE DB]"
+                  errorOrTruncationOperation="Insérer"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Entrée de destination OLE DB">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DIM_TEMPS\Destination DIM_TEMPS.Inputs[Entrée de destination OLE DB].Columns[date_mutation]"
+                      cachedDataType="dbDate"
+                      cachedName="date_mutation"
+                      cachedSortKeyPosition="1"
+                      externalMetadataColumnId="Package\DIM_TEMPS\Destination DIM_TEMPS.Inputs[Entrée de destination OLE DB].ExternalColumns[date_mutation]"
+                      lineageId="Package\DIM_TEMPS\Trier sur date_mutation.Outputs[Sortie de tri].Columns[date_mutation]" />
+                    <inputColumn
+                      refId="Package\DIM_TEMPS\Destination DIM_TEMPS.Inputs[Entrée de destination OLE DB].Columns[annee]"
+                      cachedDataType="i4"
+                      cachedName="annee"
+                      externalMetadataColumnId="Package\DIM_TEMPS\Destination DIM_TEMPS.Inputs[Entrée de destination OLE DB].ExternalColumns[annee]"
+                      lineageId="Package\DIM_TEMPS\Trier sur date_mutation.Outputs[Sortie de tri].Columns[annee]" />
+                    <inputColumn
+                      refId="Package\DIM_TEMPS\Destination DIM_TEMPS.Inputs[Entrée de destination OLE DB].Columns[trimestre_]"
+                      cachedDataType="i4"
+                      cachedName="trimestre_"
+                      externalMetadataColumnId="Package\DIM_TEMPS\Destination DIM_TEMPS.Inputs[Entrée de destination OLE DB].ExternalColumns[trimestre_]"
+                      lineageId="Package\DIM_TEMPS\Trier sur date_mutation.Outputs[Sortie de tri].Columns[trimestre_]" />
+                    <inputColumn
+                      refId="Package\DIM_TEMPS\Destination DIM_TEMPS.Inputs[Entrée de destination OLE DB].Columns[mois]"
+                      cachedDataType="i4"
+                      cachedName="mois"
+                      externalMetadataColumnId="Package\DIM_TEMPS\Destination DIM_TEMPS.Inputs[Entrée de destination OLE DB].ExternalColumns[mois]"
+                      lineageId="Package\DIM_TEMPS\Trier sur date_mutation.Outputs[Sortie de tri].Columns[mois]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DIM_TEMPS\Destination DIM_TEMPS.Inputs[Entrée de destination OLE DB].ExternalColumns[id_date]"
+                      dataType="i4"
+                      name="id_date" />
+                    <externalMetadataColumn
+                      refId="Package\DIM_TEMPS\Destination DIM_TEMPS.Inputs[Entrée de destination OLE DB].ExternalColumns[date_mutation]"
+                      dataType="dbDate"
+                      name="date_mutation" />
+                    <externalMetadataColumn
+                      refId="Package\DIM_TEMPS\Destination DIM_TEMPS.Inputs[Entrée de destination OLE DB].ExternalColumns[annee]"
+                      dataType="i4"
+                      name="annee" />
+                    <externalMetadataColumn
+                      refId="Package\DIM_TEMPS\Destination DIM_TEMPS.Inputs[Entrée de destination OLE DB].ExternalColumns[trimestre_]"
+                      dataType="i4"
+                      name="trimestre_" />
+                    <externalMetadataColumn
+                      refId="Package\DIM_TEMPS\Destination DIM_TEMPS.Inputs[Entrée de destination OLE DB].ExternalColumns[mois]"
+                      dataType="i4"
+                      name="mois" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DIM_TEMPS\Destination DIM_TEMPS.Outputs[Sortie d'erreur de destination OLE DB]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Sortie d'erreur de destination OLE DB"
+                  synchronousInputId="Package\DIM_TEMPS\Destination DIM_TEMPS.Inputs[Entrée de destination OLE DB]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DIM_TEMPS\Destination DIM_TEMPS.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DIM_TEMPS\Destination DIM_TEMPS.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DIM_TEMPS\Destination DIM_TEMPS.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DIM_TEMPS\Destination DIM_TEMPS.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DIM_TEMPS\Recherche data_mutation dans DIM_TEMPS"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Recherche;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;6"
+              description="Joint des colonnes supplémentaires au flux de données en recherchant des valeurs dans une table. Par exemple, joignez la colonne 'id employé' à la table des employés afin d'obtenir la 'date d'embauche' et le 'nom de l'employé'. Nous recommandons cette transformation lorsque la table de recherche peut être stockée en mémoire."
+              name="Recherche data_mutation dans DIM_TEMPS"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Spécifie l'instruction SQL qui génère la table de correspondance."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=17.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from [dbo].[DIM_TEMPS]</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie une instruction SQL qui utilise des paramètres pour générer la table de correspondance."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=17.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">select * from (select * from [dbo].[DIM_TEMPS]) [refTable]
+where [refTable].[date_mutation] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie le type de connexion utilisé pour accéder au dataset de référence."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie le type de cache de la table de correspondance."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie comment la transformation de recherche gère les lignes sans entrées correspondantes dans le jeu de données de référence."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie le pourcentage du cache alloué aux lignes sans entrées correspondantes dans le dataset de référence."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Utilisation maximale de la mémoire pour le cache de référence sur une plateforme 32 bits."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Utilisation maximale de la mémoire pour le cache de référence sur une plateforme 64 bits."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indique si les métadonnées sont à référencer en format XML."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="id_date" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="date_mutation" dataType="DT_DBDATE" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="annee" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="trimestre_" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="mois" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Spécifie la liste d'identificateurs de traçabilité se mappant aux paramètres utilisés dans la propriété SQLCommand par l'instruction SQL. Les entrées dans la liste sont séparées par des points-virgules."
+                  name="ParameterMap">#{Package\DIM_TEMPS\Trier sur date_mutation.Outputs[Sortie de tri].Columns[date_mutation]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie la page de codes de la colonne à utiliser lorsque les informations de page de codes ne sont pas disponibles à partir de la source de données."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Détermine si les clés dupliquées dans les données de référence doivent être traitées en tant qu'erreurs lorsque le mode Cache complet est utilisé."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DIM_TEMPS\Recherche data_mutation dans DIM_TEMPS.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Connexion_BD_Ventes_Fonciere_DWH]"
+                  connectionManagerRefId="Package.ConnectionManagers[Connexion_BD_Ventes_Fonciere_DWH]"
+                  description="Gestionnaire de connexions utilisé pour accéder aux données de correspondance."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DIM_TEMPS\Recherche data_mutation dans DIM_TEMPS.Inputs[Entrée de recherche]"
+                  name="Entrée de recherche">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DIM_TEMPS\Recherche data_mutation dans DIM_TEMPS.Inputs[Entrée de recherche].Columns[date_mutation]"
+                      cachedDataType="dbDate"
+                      cachedName="date_mutation"
+                      cachedSortKeyPosition="1"
+                      lineageId="Package\DIM_TEMPS\Trier sur date_mutation.Outputs[Sortie de tri].Columns[date_mutation]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Spécifie la colonne de la table de référence sur laquelle une colonne se lie."
+                          name="JoinToReferenceColumn">date_mutation</property>
+                        <property
+                          dataType="System.Null"
+                          description="Spécifie la colonne de la table de référence à partir de laquelle une colonne est copiée."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DIM_TEMPS\Recherche data_mutation dans DIM_TEMPS.Outputs[Sortie de recherche avec correspondance]"
+                  errorOrTruncationOperation="Recherche"
+                  exclusionGroup="1"
+                  name="Sortie de recherche avec correspondance"
+                  synchronousInputId="Package\DIM_TEMPS\Recherche data_mutation dans DIM_TEMPS.Inputs[Entrée de recherche]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DIM_TEMPS\Recherche data_mutation dans DIM_TEMPS.Outputs[Sortie de recherche avec correspondance].Columns[date_mutation]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Copie de colonnes"
+                      lineageId="Package\DIM_TEMPS\Recherche data_mutation dans DIM_TEMPS.Outputs[Sortie de recherche avec correspondance].Columns[date_mutation]"
+                      name="date_mutation"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Spécifie la colonne de la table de référence à partir de laquelle une colonne est copiée."
+                          name="CopyFromReferenceColumn">date_mutation</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DIM_TEMPS\Recherche data_mutation dans DIM_TEMPS.Outputs[Sortie de recherche sans correspondance]"
+                  description="Sortie de recherche gérant les lignes sans entrées correspondantes dans le dataset de référence. Utilisez cette sortie lorsque la propriété NoMatchBehavior a la valeur « Envoyez les lignes sans entrées correspondantes dans la sortie sans correspondance »."
+                  exclusionGroup="1"
+                  name="Sortie de recherche sans correspondance"
+                  synchronousInputId="Package\DIM_TEMPS\Recherche data_mutation dans DIM_TEMPS.Inputs[Entrée de recherche]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\DIM_TEMPS\Recherche data_mutation dans DIM_TEMPS.Outputs[Sortie d'erreur de recherche]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Sortie d'erreur de recherche"
+                  synchronousInputId="Package\DIM_TEMPS\Recherche data_mutation dans DIM_TEMPS.Inputs[Entrée de recherche]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DIM_TEMPS\Recherche data_mutation dans DIM_TEMPS.Outputs[Sortie d'erreur de recherche].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DIM_TEMPS\Recherche data_mutation dans DIM_TEMPS.Outputs[Sortie d'erreur de recherche].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DIM_TEMPS\Recherche data_mutation dans DIM_TEMPS.Outputs[Sortie d'erreur de recherche].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DIM_TEMPS\Recherche data_mutation dans DIM_TEMPS.Outputs[Sortie d'erreur de recherche].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DIM_TEMPS\Source la table MUTATION"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="Source OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;7"
+              description="Source OLE DB"
+              name="Source la table MUTATION"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Nombre de secondes avant l'expiration d'une commande.  Une valeur égale à 0 indique un délai d'expiration infini."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie la variable contenant le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Commande SQL à exécuter."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=17.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT DISTINCT
+    m.date_mutation,
+    YEAR(m.date_mutation)              AS annee,
+    DATEPART(QUARTER, m.date_mutation) AS trimestre_,
+    MONTH(m.date_mutation)             AS mois
+FROM Ventes_fonciere.dbo.MUTATION m
+WHERE m.date_mutation IS NOT NULL</property>
+                <property
+                  dataType="System.String"
+                  description="Variable contenant la commande SQL à exécuter."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie la page de codes de la colonne à utiliser lorsque les informations de page de codes ne sont pas disponibles à partir de la source de données."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Force l'utilisation de la valeur de propriété DefaultCodePage lors de la description des données caractères."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie le mode utilisé pour accéder à la base de données."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="Mappages entre les paramètres de la commande SQL et les variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DIM_TEMPS\Source la table MUTATION.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Connexion_BD_Ventes_Foncieres]"
+                  connectionManagerRefId="Package.ConnectionManagers[Connexion_BD_Ventes_Foncieres]"
+                  description="Connexion OLE DB en cours d'exécution utilisée pour accéder à la base de données."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\DIM_TEMPS\Source la table MUTATION.Outputs[Sortie de source OLE DB]"
+                  name="Sortie de source OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DIM_TEMPS\Source la table MUTATION.Outputs[Sortie de source OLE DB].Columns[date_mutation]"
+                      dataType="dbDate"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DIM_TEMPS\Source la table MUTATION.Outputs[Sortie de source OLE DB].ExternalColumns[date_mutation]"
+                      lineageId="Package\DIM_TEMPS\Source la table MUTATION.Outputs[Sortie de source OLE DB].Columns[date_mutation]"
+                      name="date_mutation"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DIM_TEMPS\Source la table MUTATION.Outputs[Sortie de source OLE DB].Columns[annee]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DIM_TEMPS\Source la table MUTATION.Outputs[Sortie de source OLE DB].ExternalColumns[annee]"
+                      lineageId="Package\DIM_TEMPS\Source la table MUTATION.Outputs[Sortie de source OLE DB].Columns[annee]"
+                      name="annee"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DIM_TEMPS\Source la table MUTATION.Outputs[Sortie de source OLE DB].Columns[trimestre_]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DIM_TEMPS\Source la table MUTATION.Outputs[Sortie de source OLE DB].ExternalColumns[trimestre_]"
+                      lineageId="Package\DIM_TEMPS\Source la table MUTATION.Outputs[Sortie de source OLE DB].Columns[trimestre_]"
+                      name="trimestre_"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DIM_TEMPS\Source la table MUTATION.Outputs[Sortie de source OLE DB].Columns[mois]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DIM_TEMPS\Source la table MUTATION.Outputs[Sortie de source OLE DB].ExternalColumns[mois]"
+                      lineageId="Package\DIM_TEMPS\Source la table MUTATION.Outputs[Sortie de source OLE DB].Columns[mois]"
+                      name="mois"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DIM_TEMPS\Source la table MUTATION.Outputs[Sortie de source OLE DB].ExternalColumns[date_mutation]"
+                      dataType="dbDate"
+                      name="date_mutation" />
+                    <externalMetadataColumn
+                      refId="Package\DIM_TEMPS\Source la table MUTATION.Outputs[Sortie de source OLE DB].ExternalColumns[annee]"
+                      dataType="i4"
+                      name="annee" />
+                    <externalMetadataColumn
+                      refId="Package\DIM_TEMPS\Source la table MUTATION.Outputs[Sortie de source OLE DB].ExternalColumns[trimestre_]"
+                      dataType="i4"
+                      name="trimestre_" />
+                    <externalMetadataColumn
+                      refId="Package\DIM_TEMPS\Source la table MUTATION.Outputs[Sortie de source OLE DB].ExternalColumns[mois]"
+                      dataType="i4"
+                      name="mois" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\DIM_TEMPS\Source la table MUTATION.Outputs[Sortie d'erreur de source OLE DB]"
+                  isErrorOut="true"
+                  name="Sortie d'erreur de source OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DIM_TEMPS\Source la table MUTATION.Outputs[Sortie d'erreur de source OLE DB].Columns[date_mutation]"
+                      dataType="dbDate"
+                      lineageId="Package\DIM_TEMPS\Source la table MUTATION.Outputs[Sortie d'erreur de source OLE DB].Columns[date_mutation]"
+                      name="date_mutation" />
+                    <outputColumn
+                      refId="Package\DIM_TEMPS\Source la table MUTATION.Outputs[Sortie d'erreur de source OLE DB].Columns[annee]"
+                      dataType="i4"
+                      lineageId="Package\DIM_TEMPS\Source la table MUTATION.Outputs[Sortie d'erreur de source OLE DB].Columns[annee]"
+                      name="annee" />
+                    <outputColumn
+                      refId="Package\DIM_TEMPS\Source la table MUTATION.Outputs[Sortie d'erreur de source OLE DB].Columns[trimestre_]"
+                      dataType="i4"
+                      lineageId="Package\DIM_TEMPS\Source la table MUTATION.Outputs[Sortie d'erreur de source OLE DB].Columns[trimestre_]"
+                      name="trimestre_" />
+                    <outputColumn
+                      refId="Package\DIM_TEMPS\Source la table MUTATION.Outputs[Sortie d'erreur de source OLE DB].Columns[mois]"
+                      dataType="i4"
+                      lineageId="Package\DIM_TEMPS\Source la table MUTATION.Outputs[Sortie d'erreur de source OLE DB].Columns[mois]"
+                      name="mois" />
+                    <outputColumn
+                      refId="Package\DIM_TEMPS\Source la table MUTATION.Outputs[Sortie d'erreur de source OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DIM_TEMPS\Source la table MUTATION.Outputs[Sortie d'erreur de source OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DIM_TEMPS\Source la table MUTATION.Outputs[Sortie d'erreur de source OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DIM_TEMPS\Source la table MUTATION.Outputs[Sortie d'erreur de source OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DIM_TEMPS\Trier sur date_mutation"
+              componentClassID="Microsoft.Sort"
+              contactInfo="Trier;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;1"
+              description="Trie les données d'entrée en ordre croissant ou décroissant lorsque le tri ne peut pas être effectué à la source. Par exemple, triez les données de vente par 'id de client' avant leur enregistrement dans un fichier plat et leur diffusion dans un autre service. Remarque : nous ne recommandons pas cette transformation dans le cas de flux de données volumineux."
+              name="Trier sur date_mutation"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Indique si la transformation de tri supprime les lignes comportant des valeurs de tri en double."
+                  name="EliminateDuplicates">true</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie le nombre maximal de threads à utiliser pour le tri."
+                  expressionType="Notify"
+                  name="MaximumThreads">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\DIM_TEMPS\Trier sur date_mutation.Inputs[Entrée de tri]"
+                  name="Entrée de tri">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DIM_TEMPS\Trier sur date_mutation.Inputs[Entrée de tri].Columns[date_mutation]"
+                      cachedDataType="dbDate"
+                      cachedName="date_mutation"
+                      lineageId="Package\DIM_TEMPS\Source la table MUTATION.Outputs[Sortie de source OLE DB].Columns[date_mutation]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie les options de comparaison pour les données caractères."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie l'ordre de tri de la colonne."
+                          name="NewSortKeyPosition">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DIM_TEMPS\Trier sur date_mutation.Inputs[Entrée de tri].Columns[annee]"
+                      cachedDataType="i4"
+                      cachedName="annee"
+                      lineageId="Package\DIM_TEMPS\Source la table MUTATION.Outputs[Sortie de source OLE DB].Columns[annee]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie les options de comparaison pour les données caractères."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie l'ordre de tri de la colonne."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DIM_TEMPS\Trier sur date_mutation.Inputs[Entrée de tri].Columns[trimestre_]"
+                      cachedDataType="i4"
+                      cachedName="trimestre_"
+                      lineageId="Package\DIM_TEMPS\Source la table MUTATION.Outputs[Sortie de source OLE DB].Columns[trimestre_]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie les options de comparaison pour les données caractères."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie l'ordre de tri de la colonne."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DIM_TEMPS\Trier sur date_mutation.Inputs[Entrée de tri].Columns[mois]"
+                      cachedDataType="i4"
+                      cachedName="mois"
+                      lineageId="Package\DIM_TEMPS\Source la table MUTATION.Outputs[Sortie de source OLE DB].Columns[mois]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie les options de comparaison pour les données caractères."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie l'ordre de tri de la colonne."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DIM_TEMPS\Trier sur date_mutation.Outputs[Sortie de tri]"
+                  isSorted="true"
+                  name="Sortie de tri">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DIM_TEMPS\Trier sur date_mutation.Outputs[Sortie de tri].Columns[date_mutation]"
+                      dataType="dbDate"
+                      lineageId="Package\DIM_TEMPS\Trier sur date_mutation.Outputs[Sortie de tri].Columns[date_mutation]"
+                      name="date_mutation"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Spécifie l'identificateur de traçabilité de la colonne d'entrée associé à cette colonne de sortie."
+                          name="SortColumnId">#{Package\DIM_TEMPS\Source la table MUTATION.Outputs[Sortie de source OLE DB].Columns[date_mutation]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DIM_TEMPS\Trier sur date_mutation.Outputs[Sortie de tri].Columns[annee]"
+                      dataType="i4"
+                      lineageId="Package\DIM_TEMPS\Trier sur date_mutation.Outputs[Sortie de tri].Columns[annee]"
+                      name="annee">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Spécifie l'identificateur de traçabilité de la colonne d'entrée associé à cette colonne de sortie."
+                          name="SortColumnId">#{Package\DIM_TEMPS\Source la table MUTATION.Outputs[Sortie de source OLE DB].Columns[annee]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DIM_TEMPS\Trier sur date_mutation.Outputs[Sortie de tri].Columns[trimestre_]"
+                      dataType="i4"
+                      lineageId="Package\DIM_TEMPS\Trier sur date_mutation.Outputs[Sortie de tri].Columns[trimestre_]"
+                      name="trimestre_">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Spécifie l'identificateur de traçabilité de la colonne d'entrée associé à cette colonne de sortie."
+                          name="SortColumnId">#{Package\DIM_TEMPS\Source la table MUTATION.Outputs[Sortie de source OLE DB].Columns[trimestre_]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DIM_TEMPS\Trier sur date_mutation.Outputs[Sortie de tri].Columns[mois]"
+                      dataType="i4"
+                      lineageId="Package\DIM_TEMPS\Trier sur date_mutation.Outputs[Sortie de tri].Columns[mois]"
+                      name="mois">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Spécifie l'identificateur de traçabilité de la colonne d'entrée associé à cette colonne de sortie."
+                          name="SortColumnId">#{Package\DIM_TEMPS\Source la table MUTATION.Outputs[Sortie de source OLE DB].Columns[mois]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\DIM_TEMPS.Paths[Sortie de recherche sans correspondance]"
+              endId="Package\DIM_TEMPS\Destination DIM_TEMPS.Inputs[Entrée de destination OLE DB]"
+              name="Sortie de recherche sans correspondance"
+              startId="Package\DIM_TEMPS\Recherche data_mutation dans DIM_TEMPS.Outputs[Sortie de recherche sans correspondance]" />
+            <path
+              refId="Package\DIM_TEMPS.Paths[Sortie de source OLE DB]"
+              endId="Package\DIM_TEMPS\Trier sur date_mutation.Inputs[Entrée de tri]"
+              name="Sortie de source OLE DB"
+              startId="Package\DIM_TEMPS\Source la table MUTATION.Outputs[Sortie de source OLE DB]" />
+            <path
+              refId="Package\DIM_TEMPS.Paths[Sortie de tri]"
+              endId="Package\DIM_TEMPS\Recherche data_mutation dans DIM_TEMPS.Inputs[Entrée de recherche]"
+              name="Sortie de tri"
+              startId="Package\DIM_TEMPS\Trier sur date_mutation.Outputs[Sortie de tri]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--Cette section CDATA contient des informations sur la disposition du package. Elle comprend des informations telles que les coordonnées (x,y), la largeur et la hauteur.-->
+<!--Si vous modifiez manuellement cette section et commettez une erreur, vous pouvez la supprimer. -->
+<!--Le package pourra toujours se charger normalement, mais les informations de disposition précédente seront perdues et le concepteur réorganisera automatiquement les éléments sur l'aire de conception.-->
+<Objects
+  Version="8">
+  <!--Chaque nœud ci-dessous contiendra des propriétés qui n'affectent pas le comportement d'exécution.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="164,41.5"
+          Id="Package\DIM_TEMPS"
+          TopLeft="110.000000234161,77.99999993163" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\DIM_TEMPS">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="204,41.5"
+          Id="Package\DIM_TEMPS\Source la table MUTATION"
+          TopLeft="171.428571793498,56.5882352445159" />
+        <NodeLayout
+          Size="189.5,41.5"
+          Id="Package\DIM_TEMPS\Trier sur date_mutation"
+          TopLeft="179.071428940917,156.147058691482" />
+        <NodeLayout
+          Size="192,41.5"
+          Id="Package\DIM_TEMPS\Destination DIM_TEMPS"
+          TopLeft="182.857143246398,382.352940841324" />
+        <NodeLayout
+          Size="285.5,41.5"
+          Id="Package\DIM_TEMPS\Recherche data_mutation dans DIM_TEMPS"
+          TopLeft="131.928571697705,257.852940955273" />
+        <EdgeLayout
+          Id="Package\DIM_TEMPS.Paths[Sortie de tri]"
+          TopLeft="274.300000319311,197.747058691482">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60.1058822637918"
+              Start="0,0"
+              End="0,52.6058822637918">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.6058822637918" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DIM_TEMPS.Paths[Sortie de source OLE DB]"
+          TopLeft="273.650000367207,98.1882352445159">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,57.9588234469657"
+              Start="0,0"
+              End="0,50.4588234469657">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,50.4588234469657" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DIM_TEMPS.Paths[Sortie de recherche sans correspondance]"
+          TopLeft="276.792857472051,299.452940955273">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,82.8999998860501"
+              Start="0,0"
+              End="0,75.3999998860501">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,75.3999998860501" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-91.50201171875,31.895312443025,183.0040234375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\DIM_TEMPS\Source la table MUTATION">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DIM_TEMPS\Destination DIM_TEMPS">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DIM_TEMPS\Recherche data_mutation dans DIM_TEMPS">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[DIM_TEMPS]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

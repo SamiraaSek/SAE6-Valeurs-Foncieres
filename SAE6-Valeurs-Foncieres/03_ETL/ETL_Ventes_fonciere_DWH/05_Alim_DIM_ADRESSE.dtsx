@@ -1,0 +1,1310 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="6/4/2026 2:19:07 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="ul5080"
+  DTS:CreatorName="ul5080\sql"
+  DTS:DTSID="{ABABF0B8-8BEF-41DC-9EA8-4E8623CB3204}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="17.0.1016.0"
+  DTS:LocaleID="1036"
+  DTS:ObjectName="Package1"
+  DTS:PackageType="5"
+  DTS:VersionBuild="10"
+  DTS:VersionGUID="{CA95F2D6-98AE-4D8E-964A-E52C22A1532A}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Connexion_Ventes_fonciere]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{3F74F6EF-64A0-449E-88D2-591C79B5173E}"
+      DTS:ObjectName="Connexion_Ventes_fonciere">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=DESKTOP-PDTQGH1\SQLEXPRESS;Initial Catalog=Ventes_fonciere;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Auto Translate=False;Application Name=SSIS-Package1-{3F74F6EF-64A0-449E-88D2-591C79B5173E}Connexion de données1;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Connexion_Ventes_fonciere_DWH]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{15B528D9-59EB-4040-8193-F0E6BEADBF8F}"
+      DTS:ObjectName="Connexion_Ventes_fonciere_DWH">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=DESKTOP-PDTQGH1\SQLEXPRESS;Initial Catalog=Ventes_fonciere_DWH;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Auto Translate=False;Application Name=SSIS-Package1-{15B528D9-59EB-4040-8193-F0E6BEADBF8F}Connexion de données;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\DIM_ADRESSE"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Tâche de flux de données"
+      DTS:DTSID="{4F9A42D5-05A1-4814-B0F1-D28529545CFA}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="DIM_ADRESSE"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\DIM_ADRESSE\Destination DIM_ADRESSE"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="Destination OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;4"
+              description="Destination OLE DB"
+              name="Destination DIM_ADRESSE"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Nombre de secondes avant l'expiration d'une commande.  Une valeur égale à 0 indique un délai d'expiration infini."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                  name="OpenRowset">[dbo].[DIM_ADRESSE]</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie la variable contenant le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Commande SQL à exécuter."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=17.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie la page de codes de la colonne à utiliser lorsque les informations de page de codes ne sont pas disponibles à partir de la source de données."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Force l'utilisation de la valeur de propriété DefaultCodePage lors de la description des données caractères."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie le mode utilisé pour accéder à la base de données."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indique si les valeurs fournies pour les colonnes d'identité seront copiées à la destination. Si la valeur est définie à False, les valeurs des colonnes d'identité seront générées automatiquement à la destination. Ne s'applique que si le chargement rapide est activé."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indique si les colonnes contenant la valeur NULL auront cette valeur NULL copiée à la destination. Si la valeur est définie à False, les colonnes contenant la valeur NULL auront leurs valeurs par défaut insérées à la destination. Ne s'applique que si le chargement rapide est activé."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie les options à utiliser avec le chargement rapide.  Ne s'applique que si le chargement rapide est activé."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie quand les validations sont émises pendant l'insertion des données.  Une valeur égale à 0 spécifie qu'une validation sera émise à la fin de l'insertion des données.  Ne s'applique que si le chargement rapide est activé."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DIM_ADRESSE\Destination DIM_ADRESSE.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Connexion_Ventes_fonciere_DWH]"
+                  connectionManagerRefId="Package.ConnectionManagers[Connexion_Ventes_fonciere_DWH]"
+                  description="Connexion OLE DB en cours d'exécution utilisée pour accéder à la base de données."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DIM_ADRESSE\Destination DIM_ADRESSE.Inputs[Entrée de destination OLE DB]"
+                  errorOrTruncationOperation="Insérer"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Entrée de destination OLE DB">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DIM_ADRESSE\Destination DIM_ADRESSE.Inputs[Entrée de destination OLE DB].Columns[id_adresse]"
+                      cachedDataType="i4"
+                      cachedName="id_adresse"
+                      cachedSortKeyPosition="1"
+                      externalMetadataColumnId="Package\DIM_ADRESSE\Destination DIM_ADRESSE.Inputs[Entrée de destination OLE DB].ExternalColumns[id_adresse]"
+                      lineageId="Package\DIM_ADRESSE\Trier sur id_adresse.Outputs[Sortie de tri].Columns[id_adresse]" />
+                    <inputColumn
+                      refId="Package\DIM_ADRESSE\Destination DIM_ADRESSE.Inputs[Entrée de destination OLE DB].Columns[adresse_numero]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="adresse_numero"
+                      externalMetadataColumnId="Package\DIM_ADRESSE\Destination DIM_ADRESSE.Inputs[Entrée de destination OLE DB].ExternalColumns[adresse_numero]"
+                      lineageId="Package\DIM_ADRESSE\Trier sur id_adresse.Outputs[Sortie de tri].Columns[adresse_numero]" />
+                    <inputColumn
+                      refId="Package\DIM_ADRESSE\Destination DIM_ADRESSE.Inputs[Entrée de destination OLE DB].Columns[adresse_suffixe]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="adresse_suffixe"
+                      externalMetadataColumnId="Package\DIM_ADRESSE\Destination DIM_ADRESSE.Inputs[Entrée de destination OLE DB].ExternalColumns[adresse_suffixe]"
+                      lineageId="Package\DIM_ADRESSE\Trier sur id_adresse.Outputs[Sortie de tri].Columns[adresse_suffixe]" />
+                    <inputColumn
+                      refId="Package\DIM_ADRESSE\Destination DIM_ADRESSE.Inputs[Entrée de destination OLE DB].Columns[adresse_code_voie]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="adresse_code_voie"
+                      externalMetadataColumnId="Package\DIM_ADRESSE\Destination DIM_ADRESSE.Inputs[Entrée de destination OLE DB].ExternalColumns[adresse_code_voie]"
+                      lineageId="Package\DIM_ADRESSE\Trier sur id_adresse.Outputs[Sortie de tri].Columns[adresse_code_voie]" />
+                    <inputColumn
+                      refId="Package\DIM_ADRESSE\Destination DIM_ADRESSE.Inputs[Entrée de destination OLE DB].Columns[adresse_nom_voie]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="500"
+                      cachedName="adresse_nom_voie"
+                      externalMetadataColumnId="Package\DIM_ADRESSE\Destination DIM_ADRESSE.Inputs[Entrée de destination OLE DB].ExternalColumns[adresse_nom_voie]"
+                      lineageId="Package\DIM_ADRESSE\Trier sur id_adresse.Outputs[Sortie de tri].Columns[adresse_nom_voie]" />
+                    <inputColumn
+                      refId="Package\DIM_ADRESSE\Destination DIM_ADRESSE.Inputs[Entrée de destination OLE DB].Columns[code_postal]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="20"
+                      cachedName="code_postal"
+                      externalMetadataColumnId="Package\DIM_ADRESSE\Destination DIM_ADRESSE.Inputs[Entrée de destination OLE DB].ExternalColumns[code_postal]"
+                      lineageId="Package\DIM_ADRESSE\Trier sur id_adresse.Outputs[Sortie de tri].Columns[code_postal]" />
+                    <inputColumn
+                      refId="Package\DIM_ADRESSE\Destination DIM_ADRESSE.Inputs[Entrée de destination OLE DB].Columns[longitude]"
+                      cachedDataType="r8"
+                      cachedName="longitude"
+                      externalMetadataColumnId="Package\DIM_ADRESSE\Destination DIM_ADRESSE.Inputs[Entrée de destination OLE DB].ExternalColumns[longitude]"
+                      lineageId="Package\DIM_ADRESSE\Trier sur id_adresse.Outputs[Sortie de tri].Columns[longitude]" />
+                    <inputColumn
+                      refId="Package\DIM_ADRESSE\Destination DIM_ADRESSE.Inputs[Entrée de destination OLE DB].Columns[latitude]"
+                      cachedDataType="r8"
+                      cachedName="latitude"
+                      externalMetadataColumnId="Package\DIM_ADRESSE\Destination DIM_ADRESSE.Inputs[Entrée de destination OLE DB].ExternalColumns[latitude]"
+                      lineageId="Package\DIM_ADRESSE\Trier sur id_adresse.Outputs[Sortie de tri].Columns[latitude]" />
+                    <inputColumn
+                      refId="Package\DIM_ADRESSE\Destination DIM_ADRESSE.Inputs[Entrée de destination OLE DB].Columns[code_commune]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="code_commune"
+                      externalMetadataColumnId="Package\DIM_ADRESSE\Destination DIM_ADRESSE.Inputs[Entrée de destination OLE DB].ExternalColumns[code_commune]"
+                      lineageId="Package\DIM_ADRESSE\Trier sur id_adresse.Outputs[Sortie de tri].Columns[code_commune]" />
+                    <inputColumn
+                      refId="Package\DIM_ADRESSE\Destination DIM_ADRESSE.Inputs[Entrée de destination OLE DB].Columns[nom_commune]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="500"
+                      cachedName="nom_commune"
+                      externalMetadataColumnId="Package\DIM_ADRESSE\Destination DIM_ADRESSE.Inputs[Entrée de destination OLE DB].ExternalColumns[nom_commune]"
+                      lineageId="Package\DIM_ADRESSE\Trier sur id_adresse.Outputs[Sortie de tri].Columns[nom_commune]" />
+                    <inputColumn
+                      refId="Package\DIM_ADRESSE\Destination DIM_ADRESSE.Inputs[Entrée de destination OLE DB].Columns[code_departement]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="20"
+                      cachedName="code_departement"
+                      externalMetadataColumnId="Package\DIM_ADRESSE\Destination DIM_ADRESSE.Inputs[Entrée de destination OLE DB].ExternalColumns[code_departement]"
+                      lineageId="Package\DIM_ADRESSE\Trier sur id_adresse.Outputs[Sortie de tri].Columns[code_departement]" />
+                    <inputColumn
+                      refId="Package\DIM_ADRESSE\Destination DIM_ADRESSE.Inputs[Entrée de destination OLE DB].Columns[ancien_code_commune]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="ancien_code_commune"
+                      externalMetadataColumnId="Package\DIM_ADRESSE\Destination DIM_ADRESSE.Inputs[Entrée de destination OLE DB].ExternalColumns[ancien_code_commune]"
+                      lineageId="Package\DIM_ADRESSE\Trier sur id_adresse.Outputs[Sortie de tri].Columns[ancien_code_commune]" />
+                    <inputColumn
+                      refId="Package\DIM_ADRESSE\Destination DIM_ADRESSE.Inputs[Entrée de destination OLE DB].Columns[ancien_nom_commune]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="500"
+                      cachedName="ancien_nom_commune"
+                      externalMetadataColumnId="Package\DIM_ADRESSE\Destination DIM_ADRESSE.Inputs[Entrée de destination OLE DB].ExternalColumns[ancien_nom_commune]"
+                      lineageId="Package\DIM_ADRESSE\Trier sur id_adresse.Outputs[Sortie de tri].Columns[ancien_nom_commune]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DIM_ADRESSE\Destination DIM_ADRESSE.Inputs[Entrée de destination OLE DB].ExternalColumns[id_adresse]"
+                      dataType="i4"
+                      name="id_adresse" />
+                    <externalMetadataColumn
+                      refId="Package\DIM_ADRESSE\Destination DIM_ADRESSE.Inputs[Entrée de destination OLE DB].ExternalColumns[adresse_numero]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="adresse_numero" />
+                    <externalMetadataColumn
+                      refId="Package\DIM_ADRESSE\Destination DIM_ADRESSE.Inputs[Entrée de destination OLE DB].ExternalColumns[adresse_suffixe]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="adresse_suffixe" />
+                    <externalMetadataColumn
+                      refId="Package\DIM_ADRESSE\Destination DIM_ADRESSE.Inputs[Entrée de destination OLE DB].ExternalColumns[adresse_code_voie]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="adresse_code_voie" />
+                    <externalMetadataColumn
+                      refId="Package\DIM_ADRESSE\Destination DIM_ADRESSE.Inputs[Entrée de destination OLE DB].ExternalColumns[adresse_nom_voie]"
+                      codePage="1252"
+                      dataType="str"
+                      length="500"
+                      name="adresse_nom_voie" />
+                    <externalMetadataColumn
+                      refId="Package\DIM_ADRESSE\Destination DIM_ADRESSE.Inputs[Entrée de destination OLE DB].ExternalColumns[code_postal]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      name="code_postal" />
+                    <externalMetadataColumn
+                      refId="Package\DIM_ADRESSE\Destination DIM_ADRESSE.Inputs[Entrée de destination OLE DB].ExternalColumns[longitude]"
+                      dataType="r8"
+                      name="longitude" />
+                    <externalMetadataColumn
+                      refId="Package\DIM_ADRESSE\Destination DIM_ADRESSE.Inputs[Entrée de destination OLE DB].ExternalColumns[latitude]"
+                      dataType="r8"
+                      name="latitude" />
+                    <externalMetadataColumn
+                      refId="Package\DIM_ADRESSE\Destination DIM_ADRESSE.Inputs[Entrée de destination OLE DB].ExternalColumns[code_commune]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="code_commune" />
+                    <externalMetadataColumn
+                      refId="Package\DIM_ADRESSE\Destination DIM_ADRESSE.Inputs[Entrée de destination OLE DB].ExternalColumns[nom_commune]"
+                      codePage="1252"
+                      dataType="str"
+                      length="500"
+                      name="nom_commune" />
+                    <externalMetadataColumn
+                      refId="Package\DIM_ADRESSE\Destination DIM_ADRESSE.Inputs[Entrée de destination OLE DB].ExternalColumns[code_departement]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      name="code_departement" />
+                    <externalMetadataColumn
+                      refId="Package\DIM_ADRESSE\Destination DIM_ADRESSE.Inputs[Entrée de destination OLE DB].ExternalColumns[ancien_code_commune]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="ancien_code_commune" />
+                    <externalMetadataColumn
+                      refId="Package\DIM_ADRESSE\Destination DIM_ADRESSE.Inputs[Entrée de destination OLE DB].ExternalColumns[ancien_nom_commune]"
+                      codePage="1252"
+                      dataType="str"
+                      length="500"
+                      name="ancien_nom_commune" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DIM_ADRESSE\Destination DIM_ADRESSE.Outputs[Sortie d'erreur de destination OLE DB]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Sortie d'erreur de destination OLE DB"
+                  synchronousInputId="Package\DIM_ADRESSE\Destination DIM_ADRESSE.Inputs[Entrée de destination OLE DB]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DIM_ADRESSE\Destination DIM_ADRESSE.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DIM_ADRESSE\Destination DIM_ADRESSE.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DIM_ADRESSE\Destination DIM_ADRESSE.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DIM_ADRESSE\Destination DIM_ADRESSE.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DIM_ADRESSE\Source jointure table ADRESSE et COMMUNE"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="Source OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;7"
+              description="Source OLE DB"
+              name="Source jointure table ADRESSE et COMMUNE"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Nombre de secondes avant l'expiration d'une commande.  Une valeur égale à 0 indique un délai d'expiration infini."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie la variable contenant le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Commande SQL à exécuter."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=17.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT
+    a.id_adresse,
+    a.adresse_numero,
+    a.adresse_suffixe,
+    a.adresse_code_voie,
+    a.adresse_nom_voie,
+    a.code_postal,
+    a.longitude,
+    a.latitude,
+    c.code_commune,
+    c.nom_commune,
+    c.code_departement,
+    c.ancien_code_commune,
+    c.ancien_nom_commune
+FROM Ventes_fonciere.dbo.ADRESSE a
+LEFT JOIN Ventes_fonciere.dbo.COMMUNE c
+    ON a.id_commune = c.id_commune</property>
+                <property
+                  dataType="System.String"
+                  description="Variable contenant la commande SQL à exécuter."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie la page de codes de la colonne à utiliser lorsque les informations de page de codes ne sont pas disponibles à partir de la source de données."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Force l'utilisation de la valeur de propriété DefaultCodePage lors de la description des données caractères."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie le mode utilisé pour accéder à la base de données."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="Mappages entre les paramètres de la commande SQL et les variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DIM_ADRESSE\Source jointure table ADRESSE et COMMUNE.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Connexion_Ventes_fonciere]"
+                  connectionManagerRefId="Package.ConnectionManagers[Connexion_Ventes_fonciere]"
+                  description="Connexion OLE DB en cours d'exécution utilisée pour accéder à la base de données."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\DIM_ADRESSE\Source jointure table ADRESSE et COMMUNE.Outputs[Sortie de source OLE DB]"
+                  name="Sortie de source OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DIM_ADRESSE\Source jointure table ADRESSE et COMMUNE.Outputs[Sortie de source OLE DB].Columns[id_adresse]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DIM_ADRESSE\Source jointure table ADRESSE et COMMUNE.Outputs[Sortie de source OLE DB].ExternalColumns[id_adresse]"
+                      lineageId="Package\DIM_ADRESSE\Source jointure table ADRESSE et COMMUNE.Outputs[Sortie de source OLE DB].Columns[id_adresse]"
+                      name="id_adresse"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DIM_ADRESSE\Source jointure table ADRESSE et COMMUNE.Outputs[Sortie de source OLE DB].Columns[adresse_numero]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DIM_ADRESSE\Source jointure table ADRESSE et COMMUNE.Outputs[Sortie de source OLE DB].ExternalColumns[adresse_numero]"
+                      length="50"
+                      lineageId="Package\DIM_ADRESSE\Source jointure table ADRESSE et COMMUNE.Outputs[Sortie de source OLE DB].Columns[adresse_numero]"
+                      name="adresse_numero"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DIM_ADRESSE\Source jointure table ADRESSE et COMMUNE.Outputs[Sortie de source OLE DB].Columns[adresse_suffixe]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DIM_ADRESSE\Source jointure table ADRESSE et COMMUNE.Outputs[Sortie de source OLE DB].ExternalColumns[adresse_suffixe]"
+                      length="50"
+                      lineageId="Package\DIM_ADRESSE\Source jointure table ADRESSE et COMMUNE.Outputs[Sortie de source OLE DB].Columns[adresse_suffixe]"
+                      name="adresse_suffixe"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DIM_ADRESSE\Source jointure table ADRESSE et COMMUNE.Outputs[Sortie de source OLE DB].Columns[adresse_code_voie]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DIM_ADRESSE\Source jointure table ADRESSE et COMMUNE.Outputs[Sortie de source OLE DB].ExternalColumns[adresse_code_voie]"
+                      length="100"
+                      lineageId="Package\DIM_ADRESSE\Source jointure table ADRESSE et COMMUNE.Outputs[Sortie de source OLE DB].Columns[adresse_code_voie]"
+                      name="adresse_code_voie"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DIM_ADRESSE\Source jointure table ADRESSE et COMMUNE.Outputs[Sortie de source OLE DB].Columns[adresse_nom_voie]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DIM_ADRESSE\Source jointure table ADRESSE et COMMUNE.Outputs[Sortie de source OLE DB].ExternalColumns[adresse_nom_voie]"
+                      length="500"
+                      lineageId="Package\DIM_ADRESSE\Source jointure table ADRESSE et COMMUNE.Outputs[Sortie de source OLE DB].Columns[adresse_nom_voie]"
+                      name="adresse_nom_voie"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DIM_ADRESSE\Source jointure table ADRESSE et COMMUNE.Outputs[Sortie de source OLE DB].Columns[code_postal]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DIM_ADRESSE\Source jointure table ADRESSE et COMMUNE.Outputs[Sortie de source OLE DB].ExternalColumns[code_postal]"
+                      length="20"
+                      lineageId="Package\DIM_ADRESSE\Source jointure table ADRESSE et COMMUNE.Outputs[Sortie de source OLE DB].Columns[code_postal]"
+                      name="code_postal"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DIM_ADRESSE\Source jointure table ADRESSE et COMMUNE.Outputs[Sortie de source OLE DB].Columns[longitude]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DIM_ADRESSE\Source jointure table ADRESSE et COMMUNE.Outputs[Sortie de source OLE DB].ExternalColumns[longitude]"
+                      lineageId="Package\DIM_ADRESSE\Source jointure table ADRESSE et COMMUNE.Outputs[Sortie de source OLE DB].Columns[longitude]"
+                      name="longitude"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DIM_ADRESSE\Source jointure table ADRESSE et COMMUNE.Outputs[Sortie de source OLE DB].Columns[latitude]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DIM_ADRESSE\Source jointure table ADRESSE et COMMUNE.Outputs[Sortie de source OLE DB].ExternalColumns[latitude]"
+                      lineageId="Package\DIM_ADRESSE\Source jointure table ADRESSE et COMMUNE.Outputs[Sortie de source OLE DB].Columns[latitude]"
+                      name="latitude"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DIM_ADRESSE\Source jointure table ADRESSE et COMMUNE.Outputs[Sortie de source OLE DB].Columns[code_commune]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DIM_ADRESSE\Source jointure table ADRESSE et COMMUNE.Outputs[Sortie de source OLE DB].ExternalColumns[code_commune]"
+                      length="100"
+                      lineageId="Package\DIM_ADRESSE\Source jointure table ADRESSE et COMMUNE.Outputs[Sortie de source OLE DB].Columns[code_commune]"
+                      name="code_commune"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DIM_ADRESSE\Source jointure table ADRESSE et COMMUNE.Outputs[Sortie de source OLE DB].Columns[nom_commune]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DIM_ADRESSE\Source jointure table ADRESSE et COMMUNE.Outputs[Sortie de source OLE DB].ExternalColumns[nom_commune]"
+                      length="500"
+                      lineageId="Package\DIM_ADRESSE\Source jointure table ADRESSE et COMMUNE.Outputs[Sortie de source OLE DB].Columns[nom_commune]"
+                      name="nom_commune"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DIM_ADRESSE\Source jointure table ADRESSE et COMMUNE.Outputs[Sortie de source OLE DB].Columns[code_departement]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DIM_ADRESSE\Source jointure table ADRESSE et COMMUNE.Outputs[Sortie de source OLE DB].ExternalColumns[code_departement]"
+                      length="20"
+                      lineageId="Package\DIM_ADRESSE\Source jointure table ADRESSE et COMMUNE.Outputs[Sortie de source OLE DB].Columns[code_departement]"
+                      name="code_departement"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DIM_ADRESSE\Source jointure table ADRESSE et COMMUNE.Outputs[Sortie de source OLE DB].Columns[ancien_code_commune]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DIM_ADRESSE\Source jointure table ADRESSE et COMMUNE.Outputs[Sortie de source OLE DB].ExternalColumns[ancien_code_commune]"
+                      length="100"
+                      lineageId="Package\DIM_ADRESSE\Source jointure table ADRESSE et COMMUNE.Outputs[Sortie de source OLE DB].Columns[ancien_code_commune]"
+                      name="ancien_code_commune"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DIM_ADRESSE\Source jointure table ADRESSE et COMMUNE.Outputs[Sortie de source OLE DB].Columns[ancien_nom_commune]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DIM_ADRESSE\Source jointure table ADRESSE et COMMUNE.Outputs[Sortie de source OLE DB].ExternalColumns[ancien_nom_commune]"
+                      length="500"
+                      lineageId="Package\DIM_ADRESSE\Source jointure table ADRESSE et COMMUNE.Outputs[Sortie de source OLE DB].Columns[ancien_nom_commune]"
+                      name="ancien_nom_commune"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DIM_ADRESSE\Source jointure table ADRESSE et COMMUNE.Outputs[Sortie de source OLE DB].ExternalColumns[id_adresse]"
+                      dataType="i4"
+                      name="id_adresse" />
+                    <externalMetadataColumn
+                      refId="Package\DIM_ADRESSE\Source jointure table ADRESSE et COMMUNE.Outputs[Sortie de source OLE DB].ExternalColumns[adresse_numero]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="adresse_numero" />
+                    <externalMetadataColumn
+                      refId="Package\DIM_ADRESSE\Source jointure table ADRESSE et COMMUNE.Outputs[Sortie de source OLE DB].ExternalColumns[adresse_suffixe]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="adresse_suffixe" />
+                    <externalMetadataColumn
+                      refId="Package\DIM_ADRESSE\Source jointure table ADRESSE et COMMUNE.Outputs[Sortie de source OLE DB].ExternalColumns[adresse_code_voie]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="adresse_code_voie" />
+                    <externalMetadataColumn
+                      refId="Package\DIM_ADRESSE\Source jointure table ADRESSE et COMMUNE.Outputs[Sortie de source OLE DB].ExternalColumns[adresse_nom_voie]"
+                      codePage="1252"
+                      dataType="str"
+                      length="500"
+                      name="adresse_nom_voie" />
+                    <externalMetadataColumn
+                      refId="Package\DIM_ADRESSE\Source jointure table ADRESSE et COMMUNE.Outputs[Sortie de source OLE DB].ExternalColumns[code_postal]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      name="code_postal" />
+                    <externalMetadataColumn
+                      refId="Package\DIM_ADRESSE\Source jointure table ADRESSE et COMMUNE.Outputs[Sortie de source OLE DB].ExternalColumns[longitude]"
+                      dataType="r8"
+                      name="longitude" />
+                    <externalMetadataColumn
+                      refId="Package\DIM_ADRESSE\Source jointure table ADRESSE et COMMUNE.Outputs[Sortie de source OLE DB].ExternalColumns[latitude]"
+                      dataType="r8"
+                      name="latitude" />
+                    <externalMetadataColumn
+                      refId="Package\DIM_ADRESSE\Source jointure table ADRESSE et COMMUNE.Outputs[Sortie de source OLE DB].ExternalColumns[code_commune]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="code_commune" />
+                    <externalMetadataColumn
+                      refId="Package\DIM_ADRESSE\Source jointure table ADRESSE et COMMUNE.Outputs[Sortie de source OLE DB].ExternalColumns[nom_commune]"
+                      codePage="1252"
+                      dataType="str"
+                      length="500"
+                      name="nom_commune" />
+                    <externalMetadataColumn
+                      refId="Package\DIM_ADRESSE\Source jointure table ADRESSE et COMMUNE.Outputs[Sortie de source OLE DB].ExternalColumns[code_departement]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      name="code_departement" />
+                    <externalMetadataColumn
+                      refId="Package\DIM_ADRESSE\Source jointure table ADRESSE et COMMUNE.Outputs[Sortie de source OLE DB].ExternalColumns[ancien_code_commune]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="ancien_code_commune" />
+                    <externalMetadataColumn
+                      refId="Package\DIM_ADRESSE\Source jointure table ADRESSE et COMMUNE.Outputs[Sortie de source OLE DB].ExternalColumns[ancien_nom_commune]"
+                      codePage="1252"
+                      dataType="str"
+                      length="500"
+                      name="ancien_nom_commune" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\DIM_ADRESSE\Source jointure table ADRESSE et COMMUNE.Outputs[Sortie d'erreur de source OLE DB]"
+                  isErrorOut="true"
+                  name="Sortie d'erreur de source OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DIM_ADRESSE\Source jointure table ADRESSE et COMMUNE.Outputs[Sortie d'erreur de source OLE DB].Columns[id_adresse]"
+                      dataType="i4"
+                      lineageId="Package\DIM_ADRESSE\Source jointure table ADRESSE et COMMUNE.Outputs[Sortie d'erreur de source OLE DB].Columns[id_adresse]"
+                      name="id_adresse" />
+                    <outputColumn
+                      refId="Package\DIM_ADRESSE\Source jointure table ADRESSE et COMMUNE.Outputs[Sortie d'erreur de source OLE DB].Columns[adresse_numero]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\DIM_ADRESSE\Source jointure table ADRESSE et COMMUNE.Outputs[Sortie d'erreur de source OLE DB].Columns[adresse_numero]"
+                      name="adresse_numero" />
+                    <outputColumn
+                      refId="Package\DIM_ADRESSE\Source jointure table ADRESSE et COMMUNE.Outputs[Sortie d'erreur de source OLE DB].Columns[adresse_suffixe]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\DIM_ADRESSE\Source jointure table ADRESSE et COMMUNE.Outputs[Sortie d'erreur de source OLE DB].Columns[adresse_suffixe]"
+                      name="adresse_suffixe" />
+                    <outputColumn
+                      refId="Package\DIM_ADRESSE\Source jointure table ADRESSE et COMMUNE.Outputs[Sortie d'erreur de source OLE DB].Columns[adresse_code_voie]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      lineageId="Package\DIM_ADRESSE\Source jointure table ADRESSE et COMMUNE.Outputs[Sortie d'erreur de source OLE DB].Columns[adresse_code_voie]"
+                      name="adresse_code_voie" />
+                    <outputColumn
+                      refId="Package\DIM_ADRESSE\Source jointure table ADRESSE et COMMUNE.Outputs[Sortie d'erreur de source OLE DB].Columns[adresse_nom_voie]"
+                      codePage="1252"
+                      dataType="str"
+                      length="500"
+                      lineageId="Package\DIM_ADRESSE\Source jointure table ADRESSE et COMMUNE.Outputs[Sortie d'erreur de source OLE DB].Columns[adresse_nom_voie]"
+                      name="adresse_nom_voie" />
+                    <outputColumn
+                      refId="Package\DIM_ADRESSE\Source jointure table ADRESSE et COMMUNE.Outputs[Sortie d'erreur de source OLE DB].Columns[code_postal]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      lineageId="Package\DIM_ADRESSE\Source jointure table ADRESSE et COMMUNE.Outputs[Sortie d'erreur de source OLE DB].Columns[code_postal]"
+                      name="code_postal" />
+                    <outputColumn
+                      refId="Package\DIM_ADRESSE\Source jointure table ADRESSE et COMMUNE.Outputs[Sortie d'erreur de source OLE DB].Columns[longitude]"
+                      dataType="r8"
+                      lineageId="Package\DIM_ADRESSE\Source jointure table ADRESSE et COMMUNE.Outputs[Sortie d'erreur de source OLE DB].Columns[longitude]"
+                      name="longitude" />
+                    <outputColumn
+                      refId="Package\DIM_ADRESSE\Source jointure table ADRESSE et COMMUNE.Outputs[Sortie d'erreur de source OLE DB].Columns[latitude]"
+                      dataType="r8"
+                      lineageId="Package\DIM_ADRESSE\Source jointure table ADRESSE et COMMUNE.Outputs[Sortie d'erreur de source OLE DB].Columns[latitude]"
+                      name="latitude" />
+                    <outputColumn
+                      refId="Package\DIM_ADRESSE\Source jointure table ADRESSE et COMMUNE.Outputs[Sortie d'erreur de source OLE DB].Columns[code_commune]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      lineageId="Package\DIM_ADRESSE\Source jointure table ADRESSE et COMMUNE.Outputs[Sortie d'erreur de source OLE DB].Columns[code_commune]"
+                      name="code_commune" />
+                    <outputColumn
+                      refId="Package\DIM_ADRESSE\Source jointure table ADRESSE et COMMUNE.Outputs[Sortie d'erreur de source OLE DB].Columns[nom_commune]"
+                      codePage="1252"
+                      dataType="str"
+                      length="500"
+                      lineageId="Package\DIM_ADRESSE\Source jointure table ADRESSE et COMMUNE.Outputs[Sortie d'erreur de source OLE DB].Columns[nom_commune]"
+                      name="nom_commune" />
+                    <outputColumn
+                      refId="Package\DIM_ADRESSE\Source jointure table ADRESSE et COMMUNE.Outputs[Sortie d'erreur de source OLE DB].Columns[code_departement]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      lineageId="Package\DIM_ADRESSE\Source jointure table ADRESSE et COMMUNE.Outputs[Sortie d'erreur de source OLE DB].Columns[code_departement]"
+                      name="code_departement" />
+                    <outputColumn
+                      refId="Package\DIM_ADRESSE\Source jointure table ADRESSE et COMMUNE.Outputs[Sortie d'erreur de source OLE DB].Columns[ancien_code_commune]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      lineageId="Package\DIM_ADRESSE\Source jointure table ADRESSE et COMMUNE.Outputs[Sortie d'erreur de source OLE DB].Columns[ancien_code_commune]"
+                      name="ancien_code_commune" />
+                    <outputColumn
+                      refId="Package\DIM_ADRESSE\Source jointure table ADRESSE et COMMUNE.Outputs[Sortie d'erreur de source OLE DB].Columns[ancien_nom_commune]"
+                      codePage="1252"
+                      dataType="str"
+                      length="500"
+                      lineageId="Package\DIM_ADRESSE\Source jointure table ADRESSE et COMMUNE.Outputs[Sortie d'erreur de source OLE DB].Columns[ancien_nom_commune]"
+                      name="ancien_nom_commune" />
+                    <outputColumn
+                      refId="Package\DIM_ADRESSE\Source jointure table ADRESSE et COMMUNE.Outputs[Sortie d'erreur de source OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DIM_ADRESSE\Source jointure table ADRESSE et COMMUNE.Outputs[Sortie d'erreur de source OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DIM_ADRESSE\Source jointure table ADRESSE et COMMUNE.Outputs[Sortie d'erreur de source OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DIM_ADRESSE\Source jointure table ADRESSE et COMMUNE.Outputs[Sortie d'erreur de source OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DIM_ADRESSE\Trier sur id_adresse"
+              componentClassID="Microsoft.Sort"
+              contactInfo="Trier;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;1"
+              description="Trie les données d'entrée en ordre croissant ou décroissant lorsque le tri ne peut pas être effectué à la source. Par exemple, triez les données de vente par 'id de client' avant leur enregistrement dans un fichier plat et leur diffusion dans un autre service. Remarque : nous ne recommandons pas cette transformation dans le cas de flux de données volumineux."
+              name="Trier sur id_adresse"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Indique si la transformation de tri supprime les lignes comportant des valeurs de tri en double."
+                  name="EliminateDuplicates">true</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie le nombre maximal de threads à utiliser pour le tri."
+                  expressionType="Notify"
+                  name="MaximumThreads">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\DIM_ADRESSE\Trier sur id_adresse.Inputs[Entrée de tri]"
+                  name="Entrée de tri">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DIM_ADRESSE\Trier sur id_adresse.Inputs[Entrée de tri].Columns[id_adresse]"
+                      cachedDataType="i4"
+                      cachedName="id_adresse"
+                      lineageId="Package\DIM_ADRESSE\Source jointure table ADRESSE et COMMUNE.Outputs[Sortie de source OLE DB].Columns[id_adresse]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie les options de comparaison pour les données caractères."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie l'ordre de tri de la colonne."
+                          name="NewSortKeyPosition">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DIM_ADRESSE\Trier sur id_adresse.Inputs[Entrée de tri].Columns[adresse_numero]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="adresse_numero"
+                      lineageId="Package\DIM_ADRESSE\Source jointure table ADRESSE et COMMUNE.Outputs[Sortie de source OLE DB].Columns[adresse_numero]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie les options de comparaison pour les données caractères."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie l'ordre de tri de la colonne."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DIM_ADRESSE\Trier sur id_adresse.Inputs[Entrée de tri].Columns[adresse_suffixe]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="adresse_suffixe"
+                      lineageId="Package\DIM_ADRESSE\Source jointure table ADRESSE et COMMUNE.Outputs[Sortie de source OLE DB].Columns[adresse_suffixe]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie les options de comparaison pour les données caractères."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie l'ordre de tri de la colonne."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DIM_ADRESSE\Trier sur id_adresse.Inputs[Entrée de tri].Columns[adresse_code_voie]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="adresse_code_voie"
+                      lineageId="Package\DIM_ADRESSE\Source jointure table ADRESSE et COMMUNE.Outputs[Sortie de source OLE DB].Columns[adresse_code_voie]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie les options de comparaison pour les données caractères."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie l'ordre de tri de la colonne."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DIM_ADRESSE\Trier sur id_adresse.Inputs[Entrée de tri].Columns[adresse_nom_voie]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="500"
+                      cachedName="adresse_nom_voie"
+                      lineageId="Package\DIM_ADRESSE\Source jointure table ADRESSE et COMMUNE.Outputs[Sortie de source OLE DB].Columns[adresse_nom_voie]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie les options de comparaison pour les données caractères."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie l'ordre de tri de la colonne."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DIM_ADRESSE\Trier sur id_adresse.Inputs[Entrée de tri].Columns[code_postal]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="20"
+                      cachedName="code_postal"
+                      lineageId="Package\DIM_ADRESSE\Source jointure table ADRESSE et COMMUNE.Outputs[Sortie de source OLE DB].Columns[code_postal]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie les options de comparaison pour les données caractères."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie l'ordre de tri de la colonne."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DIM_ADRESSE\Trier sur id_adresse.Inputs[Entrée de tri].Columns[longitude]"
+                      cachedDataType="r8"
+                      cachedName="longitude"
+                      lineageId="Package\DIM_ADRESSE\Source jointure table ADRESSE et COMMUNE.Outputs[Sortie de source OLE DB].Columns[longitude]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie les options de comparaison pour les données caractères."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie l'ordre de tri de la colonne."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DIM_ADRESSE\Trier sur id_adresse.Inputs[Entrée de tri].Columns[latitude]"
+                      cachedDataType="r8"
+                      cachedName="latitude"
+                      lineageId="Package\DIM_ADRESSE\Source jointure table ADRESSE et COMMUNE.Outputs[Sortie de source OLE DB].Columns[latitude]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie les options de comparaison pour les données caractères."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie l'ordre de tri de la colonne."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DIM_ADRESSE\Trier sur id_adresse.Inputs[Entrée de tri].Columns[code_commune]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="code_commune"
+                      lineageId="Package\DIM_ADRESSE\Source jointure table ADRESSE et COMMUNE.Outputs[Sortie de source OLE DB].Columns[code_commune]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie les options de comparaison pour les données caractères."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie l'ordre de tri de la colonne."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DIM_ADRESSE\Trier sur id_adresse.Inputs[Entrée de tri].Columns[nom_commune]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="500"
+                      cachedName="nom_commune"
+                      lineageId="Package\DIM_ADRESSE\Source jointure table ADRESSE et COMMUNE.Outputs[Sortie de source OLE DB].Columns[nom_commune]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie les options de comparaison pour les données caractères."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie l'ordre de tri de la colonne."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DIM_ADRESSE\Trier sur id_adresse.Inputs[Entrée de tri].Columns[code_departement]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="20"
+                      cachedName="code_departement"
+                      lineageId="Package\DIM_ADRESSE\Source jointure table ADRESSE et COMMUNE.Outputs[Sortie de source OLE DB].Columns[code_departement]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie les options de comparaison pour les données caractères."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie l'ordre de tri de la colonne."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DIM_ADRESSE\Trier sur id_adresse.Inputs[Entrée de tri].Columns[ancien_code_commune]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="ancien_code_commune"
+                      lineageId="Package\DIM_ADRESSE\Source jointure table ADRESSE et COMMUNE.Outputs[Sortie de source OLE DB].Columns[ancien_code_commune]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie les options de comparaison pour les données caractères."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie l'ordre de tri de la colonne."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DIM_ADRESSE\Trier sur id_adresse.Inputs[Entrée de tri].Columns[ancien_nom_commune]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="500"
+                      cachedName="ancien_nom_commune"
+                      lineageId="Package\DIM_ADRESSE\Source jointure table ADRESSE et COMMUNE.Outputs[Sortie de source OLE DB].Columns[ancien_nom_commune]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie les options de comparaison pour les données caractères."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie l'ordre de tri de la colonne."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DIM_ADRESSE\Trier sur id_adresse.Outputs[Sortie de tri]"
+                  isSorted="true"
+                  name="Sortie de tri">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DIM_ADRESSE\Trier sur id_adresse.Outputs[Sortie de tri].Columns[id_adresse]"
+                      dataType="i4"
+                      lineageId="Package\DIM_ADRESSE\Trier sur id_adresse.Outputs[Sortie de tri].Columns[id_adresse]"
+                      name="id_adresse"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Spécifie l'identificateur de traçabilité de la colonne d'entrée associé à cette colonne de sortie."
+                          name="SortColumnId">#{Package\DIM_ADRESSE\Source jointure table ADRESSE et COMMUNE.Outputs[Sortie de source OLE DB].Columns[id_adresse]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DIM_ADRESSE\Trier sur id_adresse.Outputs[Sortie de tri].Columns[adresse_numero]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\DIM_ADRESSE\Trier sur id_adresse.Outputs[Sortie de tri].Columns[adresse_numero]"
+                      name="adresse_numero">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Spécifie l'identificateur de traçabilité de la colonne d'entrée associé à cette colonne de sortie."
+                          name="SortColumnId">#{Package\DIM_ADRESSE\Source jointure table ADRESSE et COMMUNE.Outputs[Sortie de source OLE DB].Columns[adresse_numero]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DIM_ADRESSE\Trier sur id_adresse.Outputs[Sortie de tri].Columns[adresse_suffixe]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\DIM_ADRESSE\Trier sur id_adresse.Outputs[Sortie de tri].Columns[adresse_suffixe]"
+                      name="adresse_suffixe">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Spécifie l'identificateur de traçabilité de la colonne d'entrée associé à cette colonne de sortie."
+                          name="SortColumnId">#{Package\DIM_ADRESSE\Source jointure table ADRESSE et COMMUNE.Outputs[Sortie de source OLE DB].Columns[adresse_suffixe]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DIM_ADRESSE\Trier sur id_adresse.Outputs[Sortie de tri].Columns[adresse_code_voie]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      lineageId="Package\DIM_ADRESSE\Trier sur id_adresse.Outputs[Sortie de tri].Columns[adresse_code_voie]"
+                      name="adresse_code_voie">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Spécifie l'identificateur de traçabilité de la colonne d'entrée associé à cette colonne de sortie."
+                          name="SortColumnId">#{Package\DIM_ADRESSE\Source jointure table ADRESSE et COMMUNE.Outputs[Sortie de source OLE DB].Columns[adresse_code_voie]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DIM_ADRESSE\Trier sur id_adresse.Outputs[Sortie de tri].Columns[adresse_nom_voie]"
+                      codePage="1252"
+                      dataType="str"
+                      length="500"
+                      lineageId="Package\DIM_ADRESSE\Trier sur id_adresse.Outputs[Sortie de tri].Columns[adresse_nom_voie]"
+                      name="adresse_nom_voie">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Spécifie l'identificateur de traçabilité de la colonne d'entrée associé à cette colonne de sortie."
+                          name="SortColumnId">#{Package\DIM_ADRESSE\Source jointure table ADRESSE et COMMUNE.Outputs[Sortie de source OLE DB].Columns[adresse_nom_voie]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DIM_ADRESSE\Trier sur id_adresse.Outputs[Sortie de tri].Columns[code_postal]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      lineageId="Package\DIM_ADRESSE\Trier sur id_adresse.Outputs[Sortie de tri].Columns[code_postal]"
+                      name="code_postal">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Spécifie l'identificateur de traçabilité de la colonne d'entrée associé à cette colonne de sortie."
+                          name="SortColumnId">#{Package\DIM_ADRESSE\Source jointure table ADRESSE et COMMUNE.Outputs[Sortie de source OLE DB].Columns[code_postal]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DIM_ADRESSE\Trier sur id_adresse.Outputs[Sortie de tri].Columns[longitude]"
+                      dataType="r8"
+                      lineageId="Package\DIM_ADRESSE\Trier sur id_adresse.Outputs[Sortie de tri].Columns[longitude]"
+                      name="longitude">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Spécifie l'identificateur de traçabilité de la colonne d'entrée associé à cette colonne de sortie."
+                          name="SortColumnId">#{Package\DIM_ADRESSE\Source jointure table ADRESSE et COMMUNE.Outputs[Sortie de source OLE DB].Columns[longitude]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DIM_ADRESSE\Trier sur id_adresse.Outputs[Sortie de tri].Columns[latitude]"
+                      dataType="r8"
+                      lineageId="Package\DIM_ADRESSE\Trier sur id_adresse.Outputs[Sortie de tri].Columns[latitude]"
+                      name="latitude">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Spécifie l'identificateur de traçabilité de la colonne d'entrée associé à cette colonne de sortie."
+                          name="SortColumnId">#{Package\DIM_ADRESSE\Source jointure table ADRESSE et COMMUNE.Outputs[Sortie de source OLE DB].Columns[latitude]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DIM_ADRESSE\Trier sur id_adresse.Outputs[Sortie de tri].Columns[code_commune]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      lineageId="Package\DIM_ADRESSE\Trier sur id_adresse.Outputs[Sortie de tri].Columns[code_commune]"
+                      name="code_commune">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Spécifie l'identificateur de traçabilité de la colonne d'entrée associé à cette colonne de sortie."
+                          name="SortColumnId">#{Package\DIM_ADRESSE\Source jointure table ADRESSE et COMMUNE.Outputs[Sortie de source OLE DB].Columns[code_commune]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DIM_ADRESSE\Trier sur id_adresse.Outputs[Sortie de tri].Columns[nom_commune]"
+                      codePage="1252"
+                      dataType="str"
+                      length="500"
+                      lineageId="Package\DIM_ADRESSE\Trier sur id_adresse.Outputs[Sortie de tri].Columns[nom_commune]"
+                      name="nom_commune">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Spécifie l'identificateur de traçabilité de la colonne d'entrée associé à cette colonne de sortie."
+                          name="SortColumnId">#{Package\DIM_ADRESSE\Source jointure table ADRESSE et COMMUNE.Outputs[Sortie de source OLE DB].Columns[nom_commune]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DIM_ADRESSE\Trier sur id_adresse.Outputs[Sortie de tri].Columns[code_departement]"
+                      codePage="1252"
+                      dataType="str"
+                      length="20"
+                      lineageId="Package\DIM_ADRESSE\Trier sur id_adresse.Outputs[Sortie de tri].Columns[code_departement]"
+                      name="code_departement">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Spécifie l'identificateur de traçabilité de la colonne d'entrée associé à cette colonne de sortie."
+                          name="SortColumnId">#{Package\DIM_ADRESSE\Source jointure table ADRESSE et COMMUNE.Outputs[Sortie de source OLE DB].Columns[code_departement]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DIM_ADRESSE\Trier sur id_adresse.Outputs[Sortie de tri].Columns[ancien_code_commune]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      lineageId="Package\DIM_ADRESSE\Trier sur id_adresse.Outputs[Sortie de tri].Columns[ancien_code_commune]"
+                      name="ancien_code_commune">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Spécifie l'identificateur de traçabilité de la colonne d'entrée associé à cette colonne de sortie."
+                          name="SortColumnId">#{Package\DIM_ADRESSE\Source jointure table ADRESSE et COMMUNE.Outputs[Sortie de source OLE DB].Columns[ancien_code_commune]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DIM_ADRESSE\Trier sur id_adresse.Outputs[Sortie de tri].Columns[ancien_nom_commune]"
+                      codePage="1252"
+                      dataType="str"
+                      length="500"
+                      lineageId="Package\DIM_ADRESSE\Trier sur id_adresse.Outputs[Sortie de tri].Columns[ancien_nom_commune]"
+                      name="ancien_nom_commune">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Spécifie l'identificateur de traçabilité de la colonne d'entrée associé à cette colonne de sortie."
+                          name="SortColumnId">#{Package\DIM_ADRESSE\Source jointure table ADRESSE et COMMUNE.Outputs[Sortie de source OLE DB].Columns[ancien_nom_commune]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\DIM_ADRESSE.Paths[Sortie de source OLE DB]"
+              endId="Package\DIM_ADRESSE\Trier sur id_adresse.Inputs[Entrée de tri]"
+              name="Sortie de source OLE DB"
+              startId="Package\DIM_ADRESSE\Source jointure table ADRESSE et COMMUNE.Outputs[Sortie de source OLE DB]" />
+            <path
+              refId="Package\DIM_ADRESSE.Paths[Sortie de tri]"
+              endId="Package\DIM_ADRESSE\Destination DIM_ADRESSE.Inputs[Entrée de destination OLE DB]"
+              name="Sortie de tri"
+              startId="Package\DIM_ADRESSE\Trier sur id_adresse.Outputs[Sortie de tri]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--Cette section CDATA contient des informations sur la disposition du package. Elle comprend des informations telles que les coordonnées (x,y), la largeur et la hauteur.-->
+<!--Si vous modifiez manuellement cette section et commettez une erreur, vous pouvez la supprimer. -->
+<!--Le package pourra toujours se charger normalement, mais les informations de disposition précédente seront perdues et le concepteur réorganisera automatiquement les éléments sur l'aire de conception.-->
+<Objects
+  Version="8">
+  <!--Chaque nœud ci-dessous contiendra des propriétés qui n'affectent pas le comportement d'exécution.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="169,41.5"
+          Id="Package\DIM_ADRESSE"
+          TopLeft="134.285714571573,126.941176359319" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\DIM_ADRESSE">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="290.4,41.6"
+          Id="Package\DIM_ADRESSE\Source jointure table ADRESSE et COMMUNE"
+          TopLeft="180.000000383173,87.1764705118217" />
+        <NodeLayout
+          Size="204,41.6"
+          Id="Package\DIM_ADRESSE\Destination DIM_ADRESSE"
+          TopLeft="220.000000468322,363.99999968094" />
+        <NodeLayout
+          Size="172,41.6"
+          Id="Package\DIM_ADRESSE\Trier sur id_adresse"
+          TopLeft="235.000000500254,219.47058804292" />
+        <EdgeLayout
+          Id="Package\DIM_ADRESSE.Paths[Sortie de tri]"
+          TopLeft="321.500000484288,261.07058804292">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,102.92941163802"
+              Start="0,0"
+              End="0,95.4294116380201">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,95.4294116380201" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DIM_ADRESSE.Paths[Sortie de source OLE DB]"
+          TopLeft="323.100000441713,128.776470511822">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,90.694117531098"
+              Start="0,0"
+              End="0,83.194117531098">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,83.194117531098" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\DIM_ADRESSE\Source jointure table ADRESSE et COMMUNE">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DIM_ADRESSE\Destination DIM_ADRESSE">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

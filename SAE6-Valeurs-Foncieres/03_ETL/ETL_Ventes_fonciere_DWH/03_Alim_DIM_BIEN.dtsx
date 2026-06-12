@@ -1,0 +1,704 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="6/4/2026 1:42:15 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="ul5080"
+  DTS:CreatorName="ul5080\sql"
+  DTS:DTSID="{8A0908CE-2D31-40D5-95B6-FA69A76CDA57}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="17.0.1016.0"
+  DTS:LocaleID="1036"
+  DTS:ObjectName="Package1"
+  DTS:PackageType="5"
+  DTS:VersionBuild="16"
+  DTS:VersionGUID="{4C5BF05A-45DD-4FB4-844C-C34DD4A196DB}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Connexiom_Ventes_Fonciere]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{4811FABE-22C2-43A4-AD22-663C857D5CC2}"
+      DTS:ObjectName="Connexiom_Ventes_Fonciere">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=DESKTOP-PDTQGH1\SQLEXPRESS;Initial Catalog=Ventes_fonciere;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Auto Translate=False;Application Name=SSIS-Package1-{4811FABE-22C2-43A4-AD22-663C857D5CC2}Connexion de données1;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Connexion_Ventes_Foncieres_DWH]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{B739DB45-5DAA-4270-8350-95C2E5258C48}"
+      DTS:ObjectName="Connexion_Ventes_Foncieres_DWH">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=DESKTOP-PDTQGH1\SQLEXPRESS;Initial Catalog=Ventes_fonciere_DWH;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Auto Translate=False;Application Name=SSIS-Package1-{B739DB45-5DAA-4270-8350-95C2E5258C48}Connexion de données;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\DIM_BIEN"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Tâche de flux de données"
+      DTS:DTSID="{CCCAE038-95B1-49E4-BE9F-76275E44CA3C}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="DIM_BIEN"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\DIM_BIEN\Destination DIM_BIEN"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="Destination OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;4"
+              description="Destination OLE DB"
+              name="Destination DIM_BIEN"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Nombre de secondes avant l'expiration d'une commande.  Une valeur égale à 0 indique un délai d'expiration infini."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                  name="OpenRowset">[dbo].[DIM_BIEN]</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie la variable contenant le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Commande SQL à exécuter."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=17.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie la page de codes de la colonne à utiliser lorsque les informations de page de codes ne sont pas disponibles à partir de la source de données."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Force l'utilisation de la valeur de propriété DefaultCodePage lors de la description des données caractères."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie le mode utilisé pour accéder à la base de données."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indique si les valeurs fournies pour les colonnes d'identité seront copiées à la destination. Si la valeur est définie à False, les valeurs des colonnes d'identité seront générées automatiquement à la destination. Ne s'applique que si le chargement rapide est activé."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indique si les colonnes contenant la valeur NULL auront cette valeur NULL copiée à la destination. Si la valeur est définie à False, les colonnes contenant la valeur NULL auront leurs valeurs par défaut insérées à la destination. Ne s'applique que si le chargement rapide est activé."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie les options à utiliser avec le chargement rapide.  Ne s'applique que si le chargement rapide est activé."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie quand les validations sont émises pendant l'insertion des données.  Une valeur égale à 0 spécifie qu'une validation sera émise à la fin de l'insertion des données.  Ne s'applique que si le chargement rapide est activé."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DIM_BIEN\Destination DIM_BIEN.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Connexion_Ventes_Foncieres_DWH]"
+                  connectionManagerRefId="Package.ConnectionManagers[Connexion_Ventes_Foncieres_DWH]"
+                  description="Connexion OLE DB en cours d'exécution utilisée pour accéder à la base de données."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\DIM_BIEN\Destination DIM_BIEN.Inputs[Entrée de destination OLE DB]"
+                  errorOrTruncationOperation="Insérer"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Entrée de destination OLE DB">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DIM_BIEN\Destination DIM_BIEN.Inputs[Entrée de destination OLE DB].Columns[id_bien]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="id_bien"
+                      cachedSortKeyPosition="1"
+                      externalMetadataColumnId="Package\DIM_BIEN\Destination DIM_BIEN.Inputs[Entrée de destination OLE DB].ExternalColumns[id_bien]"
+                      lineageId="Package\DIM_BIEN\Trier sur id_bien.Outputs[Sortie de tri].Columns[id_bien]" />
+                    <inputColumn
+                      refId="Package\DIM_BIEN\Destination DIM_BIEN.Inputs[Entrée de destination OLE DB].Columns[code_type_local]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="code_type_local"
+                      externalMetadataColumnId="Package\DIM_BIEN\Destination DIM_BIEN.Inputs[Entrée de destination OLE DB].ExternalColumns[code_type_local]"
+                      lineageId="Package\DIM_BIEN\Trier sur id_bien.Outputs[Sortie de tri].Columns[code_type_local]" />
+                    <inputColumn
+                      refId="Package\DIM_BIEN\Destination DIM_BIEN.Inputs[Entrée de destination OLE DB].Columns[type_local]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="200"
+                      cachedName="type_local"
+                      externalMetadataColumnId="Package\DIM_BIEN\Destination DIM_BIEN.Inputs[Entrée de destination OLE DB].ExternalColumns[type_local]"
+                      lineageId="Package\DIM_BIEN\Trier sur id_bien.Outputs[Sortie de tri].Columns[type_local]" />
+                    <inputColumn
+                      refId="Package\DIM_BIEN\Destination DIM_BIEN.Inputs[Entrée de destination OLE DB].Columns[surface_reelle_bati]"
+                      cachedDataType="r8"
+                      cachedName="surface_reelle_bati"
+                      externalMetadataColumnId="Package\DIM_BIEN\Destination DIM_BIEN.Inputs[Entrée de destination OLE DB].ExternalColumns[surface_reelle_bati]"
+                      lineageId="Package\DIM_BIEN\Trier sur id_bien.Outputs[Sortie de tri].Columns[surface_reelle_bati]" />
+                    <inputColumn
+                      refId="Package\DIM_BIEN\Destination DIM_BIEN.Inputs[Entrée de destination OLE DB].Columns[nombre_pieces_principales]"
+                      cachedDataType="i4"
+                      cachedName="nombre_pieces_principales"
+                      externalMetadataColumnId="Package\DIM_BIEN\Destination DIM_BIEN.Inputs[Entrée de destination OLE DB].ExternalColumns[nombre_pieces_principales]"
+                      lineageId="Package\DIM_BIEN\Trier sur id_bien.Outputs[Sortie de tri].Columns[nombre_pieces_principales]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DIM_BIEN\Destination DIM_BIEN.Inputs[Entrée de destination OLE DB].ExternalColumns[id_bien]"
+                      dataType="i4"
+                      name="id_bien" />
+                    <externalMetadataColumn
+                      refId="Package\DIM_BIEN\Destination DIM_BIEN.Inputs[Entrée de destination OLE DB].ExternalColumns[code_type_local]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="code_type_local" />
+                    <externalMetadataColumn
+                      refId="Package\DIM_BIEN\Destination DIM_BIEN.Inputs[Entrée de destination OLE DB].ExternalColumns[type_local]"
+                      codePage="1252"
+                      dataType="str"
+                      length="200"
+                      name="type_local" />
+                    <externalMetadataColumn
+                      refId="Package\DIM_BIEN\Destination DIM_BIEN.Inputs[Entrée de destination OLE DB].ExternalColumns[surface_reelle_bati]"
+                      dataType="r8"
+                      name="surface_reelle_bati" />
+                    <externalMetadataColumn
+                      refId="Package\DIM_BIEN\Destination DIM_BIEN.Inputs[Entrée de destination OLE DB].ExternalColumns[nombre_pieces_principales]"
+                      dataType="i4"
+                      name="nombre_pieces_principales" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DIM_BIEN\Destination DIM_BIEN.Outputs[Sortie d'erreur de destination OLE DB]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Sortie d'erreur de destination OLE DB"
+                  synchronousInputId="Package\DIM_BIEN\Destination DIM_BIEN.Inputs[Entrée de destination OLE DB]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DIM_BIEN\Destination DIM_BIEN.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DIM_BIEN\Destination DIM_BIEN.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DIM_BIEN\Destination DIM_BIEN.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DIM_BIEN\Destination DIM_BIEN.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DIM_BIEN\Source la table BIEN"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="Source OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;7"
+              description="Source OLE DB"
+              name="Source la table BIEN"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Nombre de secondes avant l'expiration d'une commande.  Une valeur égale à 0 indique un délai d'expiration infini."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie la variable contenant le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Commande SQL à exécuter."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=17.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT
+    id_bien,
+    code_type_local,
+    type_local
+FROM Ventes_fonciere.dbo.BIEN</property>
+                <property
+                  dataType="System.String"
+                  description="Variable contenant la commande SQL à exécuter."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie la page de codes de la colonne à utiliser lorsque les informations de page de codes ne sont pas disponibles à partir de la source de données."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Force l'utilisation de la valeur de propriété DefaultCodePage lors de la description des données caractères."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie le mode utilisé pour accéder à la base de données."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="Mappages entre les paramètres de la commande SQL et les variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\DIM_BIEN\Source la table BIEN.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Connexiom_Ventes_Fonciere]"
+                  connectionManagerRefId="Package.ConnectionManagers[Connexiom_Ventes_Fonciere]"
+                  description="Connexion OLE DB en cours d'exécution utilisée pour accéder à la base de données."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\DIM_BIEN\Source la table BIEN.Outputs[Sortie de source OLE DB]"
+                  name="Sortie de source OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DIM_BIEN\Source la table BIEN.Outputs[Sortie de source OLE DB].Columns[id_bien]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DIM_BIEN\Source la table BIEN.Outputs[Sortie de source OLE DB].ExternalColumns[id_bien]"
+                      length="50"
+                      lineageId="Package\DIM_BIEN\Source la table BIEN.Outputs[Sortie de source OLE DB].Columns[id_bien]"
+                      name="id_bien"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DIM_BIEN\Source la table BIEN.Outputs[Sortie de source OLE DB].Columns[code_type_local]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DIM_BIEN\Source la table BIEN.Outputs[Sortie de source OLE DB].ExternalColumns[code_type_local]"
+                      length="50"
+                      lineageId="Package\DIM_BIEN\Source la table BIEN.Outputs[Sortie de source OLE DB].Columns[code_type_local]"
+                      name="code_type_local"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\DIM_BIEN\Source la table BIEN.Outputs[Sortie de source OLE DB].Columns[type_local]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\DIM_BIEN\Source la table BIEN.Outputs[Sortie de source OLE DB].ExternalColumns[type_local]"
+                      length="200"
+                      lineageId="Package\DIM_BIEN\Source la table BIEN.Outputs[Sortie de source OLE DB].Columns[type_local]"
+                      name="type_local"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\DIM_BIEN\Source la table BIEN.Outputs[Sortie de source OLE DB].ExternalColumns[id_bien]"
+                      dataType="i4"
+                      name="id_bien" />
+                    <externalMetadataColumn
+                      refId="Package\DIM_BIEN\Source la table BIEN.Outputs[Sortie de source OLE DB].ExternalColumns[code_type_local]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      name="code_type_local" />
+                    <externalMetadataColumn
+                      refId="Package\DIM_BIEN\Source la table BIEN.Outputs[Sortie de source OLE DB].ExternalColumns[type_local]"
+                      codePage="1252"
+                      dataType="str"
+                      length="200"
+                      name="type_local" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\DIM_BIEN\Source la table BIEN.Outputs[Sortie d'erreur de source OLE DB]"
+                  isErrorOut="true"
+                  name="Sortie d'erreur de source OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DIM_BIEN\Source la table BIEN.Outputs[Sortie d'erreur de source OLE DB].Columns[id_bien]"
+                      dataType="i4"
+                      lineageId="Package\DIM_BIEN\Source la table BIEN.Outputs[Sortie d'erreur de source OLE DB].Columns[id_bien]"
+                      name="id_bien" />
+                    <outputColumn
+                      refId="Package\DIM_BIEN\Source la table BIEN.Outputs[Sortie d'erreur de source OLE DB].Columns[code_type_local]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\DIM_BIEN\Source la table BIEN.Outputs[Sortie d'erreur de source OLE DB].Columns[code_type_local]"
+                      name="code_type_local" />
+                    <outputColumn
+                      refId="Package\DIM_BIEN\Source la table BIEN.Outputs[Sortie d'erreur de source OLE DB].Columns[type_local]"
+                      codePage="1252"
+                      dataType="str"
+                      length="200"
+                      lineageId="Package\DIM_BIEN\Source la table BIEN.Outputs[Sortie d'erreur de source OLE DB].Columns[type_local]"
+                      name="type_local" />
+                    <outputColumn
+                      refId="Package\DIM_BIEN\Source la table BIEN.Outputs[Sortie d'erreur de source OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\DIM_BIEN\Source la table BIEN.Outputs[Sortie d'erreur de source OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\DIM_BIEN\Source la table BIEN.Outputs[Sortie d'erreur de source OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\DIM_BIEN\Source la table BIEN.Outputs[Sortie d'erreur de source OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\DIM_BIEN\Trier sur id_bien"
+              componentClassID="Microsoft.Sort"
+              contactInfo="Trier;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;1"
+              description="Trie les données d'entrée en ordre croissant ou décroissant lorsque le tri ne peut pas être effectué à la source. Par exemple, triez les données de vente par 'id de client' avant leur enregistrement dans un fichier plat et leur diffusion dans un autre service. Remarque : nous ne recommandons pas cette transformation dans le cas de flux de données volumineux."
+              name="Trier sur id_bien"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Indique si la transformation de tri supprime les lignes comportant des valeurs de tri en double."
+                  name="EliminateDuplicates">true</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie le nombre maximal de threads à utiliser pour le tri."
+                  expressionType="Notify"
+                  name="MaximumThreads">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\DIM_BIEN\Trier sur id_bien.Inputs[Entrée de tri]"
+                  name="Entrée de tri">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\DIM_BIEN\Trier sur id_bien.Inputs[Entrée de tri].Columns[id_bien]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="id_bien"
+                      lineageId="Package\DIM_BIEN\Source la table BIEN.Outputs[Sortie de source OLE DB].Columns[id_bien]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie les options de comparaison pour les données caractères."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie l'ordre de tri de la colonne."
+                          name="NewSortKeyPosition">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DIM_BIEN\Trier sur id_bien.Inputs[Entrée de tri].Columns[code_type_local]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="50"
+                      cachedName="code_type_local"
+                      lineageId="Package\DIM_BIEN\Source la table BIEN.Outputs[Sortie de source OLE DB].Columns[code_type_local]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie les options de comparaison pour les données caractères."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie l'ordre de tri de la colonne."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DIM_BIEN\Trier sur id_bien.Inputs[Entrée de tri].Columns[type_local]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="200"
+                      cachedName="type_local"
+                      lineageId="Package\DIM_BIEN\Source la table BIEN.Outputs[Sortie de source OLE DB].Columns[type_local]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie les options de comparaison pour les données caractères."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie l'ordre de tri de la colonne."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DIM_BIEN\Trier sur id_bien.Inputs[Entrée de tri].Columns[surface_reelle_bati]"
+                      cachedDataType="r8"
+                      cachedName="surface_reelle_bati"
+                      lineageId="Package\DIM_BIEN\44:invalid">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie les options de comparaison pour les données caractères."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie l'ordre de tri de la colonne."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\DIM_BIEN\Trier sur id_bien.Inputs[Entrée de tri].Columns[nombre_pieces_principales]"
+                      cachedDataType="i4"
+                      cachedName="nombre_pieces_principales"
+                      lineageId="Package\DIM_BIEN\45:invalid">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie les options de comparaison pour les données caractères."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie l'ordre de tri de la colonne."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\DIM_BIEN\Trier sur id_bien.Outputs[Sortie de tri]"
+                  isSorted="true"
+                  name="Sortie de tri">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\DIM_BIEN\Trier sur id_bien.Outputs[Sortie de tri].Columns[id_bien]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\DIM_BIEN\Trier sur id_bien.Outputs[Sortie de tri].Columns[id_bien]"
+                      name="id_bien"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Spécifie l'identificateur de traçabilité de la colonne d'entrée associé à cette colonne de sortie."
+                          name="SortColumnId">#{Package\DIM_BIEN\Source la table BIEN.Outputs[Sortie de source OLE DB].Columns[id_bien]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DIM_BIEN\Trier sur id_bien.Outputs[Sortie de tri].Columns[code_type_local]"
+                      codePage="1252"
+                      dataType="str"
+                      length="50"
+                      lineageId="Package\DIM_BIEN\Trier sur id_bien.Outputs[Sortie de tri].Columns[code_type_local]"
+                      name="code_type_local">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Spécifie l'identificateur de traçabilité de la colonne d'entrée associé à cette colonne de sortie."
+                          name="SortColumnId">#{Package\DIM_BIEN\Source la table BIEN.Outputs[Sortie de source OLE DB].Columns[code_type_local]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DIM_BIEN\Trier sur id_bien.Outputs[Sortie de tri].Columns[type_local]"
+                      codePage="1252"
+                      dataType="str"
+                      length="200"
+                      lineageId="Package\DIM_BIEN\Trier sur id_bien.Outputs[Sortie de tri].Columns[type_local]"
+                      name="type_local">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Spécifie l'identificateur de traçabilité de la colonne d'entrée associé à cette colonne de sortie."
+                          name="SortColumnId">#{Package\DIM_BIEN\Source la table BIEN.Outputs[Sortie de source OLE DB].Columns[type_local]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DIM_BIEN\Trier sur id_bien.Outputs[Sortie de tri].Columns[surface_reelle_bati]"
+                      dataType="r8"
+                      lineageId="Package\DIM_BIEN\Trier sur id_bien.Outputs[Sortie de tri].Columns[surface_reelle_bati]"
+                      name="surface_reelle_bati">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Spécifie l'identificateur de traçabilité de la colonne d'entrée associé à cette colonne de sortie."
+                          name="SortColumnId">#{Package\DIM_BIEN\44:invalid}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\DIM_BIEN\Trier sur id_bien.Outputs[Sortie de tri].Columns[nombre_pieces_principales]"
+                      dataType="i4"
+                      lineageId="Package\DIM_BIEN\Trier sur id_bien.Outputs[Sortie de tri].Columns[nombre_pieces_principales]"
+                      name="nombre_pieces_principales">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Spécifie l'identificateur de traçabilité de la colonne d'entrée associé à cette colonne de sortie."
+                          name="SortColumnId">#{Package\DIM_BIEN\45:invalid}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\DIM_BIEN.Paths[Sortie de source OLE DB]"
+              endId="Package\DIM_BIEN\Trier sur id_bien.Inputs[Entrée de tri]"
+              name="Sortie de source OLE DB"
+              startId="Package\DIM_BIEN\Source la table BIEN.Outputs[Sortie de source OLE DB]" />
+            <path
+              refId="Package\DIM_BIEN.Paths[Sortie de tri]"
+              endId="Package\DIM_BIEN\Destination DIM_BIEN.Inputs[Entrée de destination OLE DB]"
+              name="Sortie de tri"
+              startId="Package\DIM_BIEN\Trier sur id_bien.Outputs[Sortie de tri]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--Cette section CDATA contient des informations sur la disposition du package. Elle comprend des informations telles que les coordonnées (x,y), la largeur et la hauteur.-->
+<!--Si vous modifiez manuellement cette section et commettez une erreur, vous pouvez la supprimer. -->
+<!--Le package pourra toujours se charger normalement, mais les informations de disposition précédente seront perdues et le concepteur réorganisera automatiquement les éléments sur l'aire de conception.-->
+<Objects
+  Version="8">
+  <!--Chaque nœud ci-dessous contiendra des propriétés qui n'affectent pas le comportement d'exécution.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="139,41.5"
+          Id="Package\DIM_BIEN"
+          TopLeft="88.5714287599738,89.4705881568697" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\DIM_BIEN">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="156,41.5"
+          Id="Package\DIM_BIEN\Trier sur id_bien"
+          TopLeft="171.428571793498,243.176470375081" />
+        <NodeLayout
+          Size="183,41.5"
+          Id="Package\DIM_BIEN\Destination DIM_BIEN"
+          TopLeft="157.85714319318,403.764705528437" />
+        <NodeLayout
+          Size="175,41.5"
+          Id="Package\DIM_BIEN\Source la table BIEN"
+          TopLeft="166.428571782854,87.1764705118217" />
+        <EdgeLayout
+          Id="Package\DIM_BIEN.Paths[Sortie de tri]"
+          TopLeft="249.442857493339,284.776470375081">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,118.988235153356"
+              Start="0,0"
+              End="0,111.488235153356">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,111.488235153356" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\DIM_BIEN.Paths[Sortie de source OLE DB]"
+          TopLeft="251.728571788176,128.776470511822">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,114.399999863259"
+              Start="0,0"
+              End="0,106.899999863259">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,106.899999863259" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-8,45.4499999316295,16,16"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\DIM_BIEN\Destination DIM_BIEN">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\DIM_BIEN\Source la table BIEN">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

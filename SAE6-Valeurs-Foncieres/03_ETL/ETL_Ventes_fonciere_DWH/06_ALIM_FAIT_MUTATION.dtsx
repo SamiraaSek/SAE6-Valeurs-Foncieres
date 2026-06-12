@@ -1,0 +1,868 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="6/4/2026 2:26:10 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="ul5080"
+  DTS:CreatorName="ul5080\sql"
+  DTS:DTSID="{92A0D220-D189-4788-8142-1374AB341435}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="17.0.1016.0"
+  DTS:LocaleID="1036"
+  DTS:ObjectName="Package1"
+  DTS:PackageType="5"
+  DTS:VersionBuild="43"
+  DTS:VersionGUID="{2DB48E4B-E8A3-44F1-A691-A48FB3C32A50}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Connexion_Ventes_fonciere]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{F3C7E84A-9391-4F8F-B958-69494B8A7B69}"
+      DTS:ObjectName="Connexion_Ventes_fonciere">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=DESKTOP-PDTQGH1\SQLEXPRESS;Initial Catalog=Ventes_fonciere;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Auto Translate=False;Application Name=SSIS-Package1-{F3C7E84A-9391-4F8F-B958-69494B8A7B69}Connexion de données1;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Connexion_Ventes_fonciere_DWH]"
+      DTS:CreationName="OLEDB"
+      DTS:DTSID="{FD219CDE-0CAB-4F89-AC9E-6940B811F261}"
+      DTS:ObjectName="Connexion_Ventes_fonciere_DWH">
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectRetryCount="1"
+          DTS:ConnectRetryInterval="5"
+          DTS:ConnectionString="Data Source=DESKTOP-PDTQGH1\SQLEXPRESS;Initial Catalog=Ventes_fonciere_DWH;Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Auto Translate=False;Application Name=SSIS-Package1-{FD219CDE-0CAB-4F89-AC9E-6940B811F261}Connexion de données;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\FAIT_MUTATION"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Tâche de flux de données"
+      DTS:DTSID="{6E40F905-6D19-4BB1-BF96-76DBA35AF8F1}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="FAIT_MUTATION"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\FAIT_MUTATION\Destination FAIT_MUTATION"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="Destination OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;4"
+              description="Destination OLE DB"
+              name="Destination FAIT_MUTATION"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Nombre de secondes avant l'expiration d'une commande.  Une valeur égale à 0 indique un délai d'expiration infini."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                  name="OpenRowset">[dbo].[FAIT_MUTATION]</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie la variable contenant le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Commande SQL à exécuter."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=17.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie la page de codes de la colonne à utiliser lorsque les informations de page de codes ne sont pas disponibles à partir de la source de données."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Force l'utilisation de la valeur de propriété DefaultCodePage lors de la description des données caractères."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie le mode utilisé pour accéder à la base de données."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indique si les valeurs fournies pour les colonnes d'identité seront copiées à la destination. Si la valeur est définie à False, les valeurs des colonnes d'identité seront générées automatiquement à la destination. Ne s'applique que si le chargement rapide est activé."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indique si les colonnes contenant la valeur NULL auront cette valeur NULL copiée à la destination. Si la valeur est définie à False, les colonnes contenant la valeur NULL auront leurs valeurs par défaut insérées à la destination. Ne s'applique que si le chargement rapide est activé."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie les options à utiliser avec le chargement rapide.  Ne s'applique que si le chargement rapide est activé."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie quand les validations sont émises pendant l'insertion des données.  Une valeur égale à 0 spécifie qu'une validation sera émise à la fin de l'insertion des données.  Ne s'applique que si le chargement rapide est activé."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\FAIT_MUTATION\Destination FAIT_MUTATION.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Connexion_Ventes_fonciere_DWH]"
+                  connectionManagerRefId="Package.ConnectionManagers[Connexion_Ventes_fonciere_DWH]"
+                  description="Connexion OLE DB en cours d'exécution utilisée pour accéder à la base de données."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\FAIT_MUTATION\Destination FAIT_MUTATION.Inputs[Entrée de destination OLE DB]"
+                  errorOrTruncationOperation="Insérer"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="Entrée de destination OLE DB">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\FAIT_MUTATION\Destination FAIT_MUTATION.Inputs[Entrée de destination OLE DB].Columns[id_mutation]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="id_mutation"
+                      cachedSortKeyPosition="1"
+                      externalMetadataColumnId="Package\FAIT_MUTATION\Destination FAIT_MUTATION.Inputs[Entrée de destination OLE DB].ExternalColumns[id_mutation]"
+                      lineageId="Package\FAIT_MUTATION\Trier sur id_mutation.Outputs[Sortie de tri].Columns[id_mutation]" />
+                    <inputColumn
+                      refId="Package\FAIT_MUTATION\Destination FAIT_MUTATION.Inputs[Entrée de destination OLE DB].Columns[valeur_fonciere]"
+                      cachedDataType="r8"
+                      cachedName="valeur_fonciere"
+                      externalMetadataColumnId="Package\FAIT_MUTATION\Destination FAIT_MUTATION.Inputs[Entrée de destination OLE DB].ExternalColumns[valeur_fonciere]"
+                      lineageId="Package\FAIT_MUTATION\Trier sur id_mutation.Outputs[Sortie de tri].Columns[valeur_fonciere]" />
+                    <inputColumn
+                      refId="Package\FAIT_MUTATION\Destination FAIT_MUTATION.Inputs[Entrée de destination OLE DB].Columns[nature_vente]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="200"
+                      cachedName="nature_vente"
+                      externalMetadataColumnId="Package\FAIT_MUTATION\Destination FAIT_MUTATION.Inputs[Entrée de destination OLE DB].ExternalColumns[nature_vente]"
+                      lineageId="Package\FAIT_MUTATION\Trier sur id_mutation.Outputs[Sortie de tri].Columns[nature_vente]" />
+                    <inputColumn
+                      refId="Package\FAIT_MUTATION\Destination FAIT_MUTATION.Inputs[Entrée de destination OLE DB].Columns[id_bien]"
+                      cachedDataType="i4"
+                      cachedName="id_bien"
+                      externalMetadataColumnId="Package\FAIT_MUTATION\Destination FAIT_MUTATION.Inputs[Entrée de destination OLE DB].ExternalColumns[id_bien]"
+                      lineageId="Package\FAIT_MUTATION\Trier sur id_mutation.Outputs[Sortie de tri].Columns[id_bien]" />
+                    <inputColumn
+                      refId="Package\FAIT_MUTATION\Destination FAIT_MUTATION.Inputs[Entrée de destination OLE DB].Columns[n_parcelle]"
+                      cachedDataType="i4"
+                      cachedName="n_parcelle"
+                      externalMetadataColumnId="Package\FAIT_MUTATION\Destination FAIT_MUTATION.Inputs[Entrée de destination OLE DB].ExternalColumns[n_parcelle]"
+                      lineageId="Package\FAIT_MUTATION\Trier sur id_mutation.Outputs[Sortie de tri].Columns[n_parcelle]" />
+                    <inputColumn
+                      refId="Package\FAIT_MUTATION\Destination FAIT_MUTATION.Inputs[Entrée de destination OLE DB].Columns[id_adresse]"
+                      cachedDataType="i4"
+                      cachedName="id_adresse"
+                      externalMetadataColumnId="Package\FAIT_MUTATION\Destination FAIT_MUTATION.Inputs[Entrée de destination OLE DB].ExternalColumns[id_adresse]"
+                      lineageId="Package\FAIT_MUTATION\Trier sur id_mutation.Outputs[Sortie de tri].Columns[id_adresse]" />
+                    <inputColumn
+                      refId="Package\FAIT_MUTATION\Destination FAIT_MUTATION.Inputs[Entrée de destination OLE DB].Columns[id_date]"
+                      cachedDataType="i4"
+                      cachedName="id_date"
+                      externalMetadataColumnId="Package\FAIT_MUTATION\Destination FAIT_MUTATION.Inputs[Entrée de destination OLE DB].ExternalColumns[id_date]"
+                      lineageId="Package\FAIT_MUTATION\Trier sur id_mutation.Outputs[Sortie de tri].Columns[id_date]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\FAIT_MUTATION\Destination FAIT_MUTATION.Inputs[Entrée de destination OLE DB].ExternalColumns[id_mutation]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="id_mutation" />
+                    <externalMetadataColumn
+                      refId="Package\FAIT_MUTATION\Destination FAIT_MUTATION.Inputs[Entrée de destination OLE DB].ExternalColumns[valeur_fonciere]"
+                      dataType="r8"
+                      name="valeur_fonciere" />
+                    <externalMetadataColumn
+                      refId="Package\FAIT_MUTATION\Destination FAIT_MUTATION.Inputs[Entrée de destination OLE DB].ExternalColumns[nature_vente]"
+                      codePage="1252"
+                      dataType="str"
+                      length="200"
+                      name="nature_vente" />
+                    <externalMetadataColumn
+                      refId="Package\FAIT_MUTATION\Destination FAIT_MUTATION.Inputs[Entrée de destination OLE DB].ExternalColumns[id_adresse]"
+                      dataType="i4"
+                      name="id_adresse" />
+                    <externalMetadataColumn
+                      refId="Package\FAIT_MUTATION\Destination FAIT_MUTATION.Inputs[Entrée de destination OLE DB].ExternalColumns[id_bien]"
+                      dataType="i4"
+                      name="id_bien" />
+                    <externalMetadataColumn
+                      refId="Package\FAIT_MUTATION\Destination FAIT_MUTATION.Inputs[Entrée de destination OLE DB].ExternalColumns[n_parcelle]"
+                      dataType="i4"
+                      name="n_parcelle" />
+                    <externalMetadataColumn
+                      refId="Package\FAIT_MUTATION\Destination FAIT_MUTATION.Inputs[Entrée de destination OLE DB].ExternalColumns[id_date]"
+                      dataType="i4"
+                      name="id_date" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\FAIT_MUTATION\Destination FAIT_MUTATION.Outputs[Sortie d'erreur de destination OLE DB]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Sortie d'erreur de destination OLE DB"
+                  synchronousInputId="Package\FAIT_MUTATION\Destination FAIT_MUTATION.Inputs[Entrée de destination OLE DB]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\FAIT_MUTATION\Destination FAIT_MUTATION.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\FAIT_MUTATION\Destination FAIT_MUTATION.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\FAIT_MUTATION\Destination FAIT_MUTATION.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\FAIT_MUTATION\Destination FAIT_MUTATION.Outputs[Sortie d'erreur de destination OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\FAIT_MUTATION\Source jointure table pour FAIT_MUTATION"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="Source OLE DB;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;7"
+              description="Source OLE DB"
+              name="Source jointure table pour FAIT_MUTATION"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="Nombre de secondes avant l'expiration d'une commande.  Une valeur égale à 0 indique un délai d'expiration infini."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Spécifie la variable contenant le nom de l'objet de base de données utilisé pour ouvrir un ensemble de lignes."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="Commande SQL à exécuter."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=17.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT
+    m.id_mutation,
+    m.valeur_fonciere,
+    m.nature_vente,
+    m.n_parcelle,
+    MIN(dt.id_date)                                                        AS id_date,
+    MIN(p.id_adresse)                                                      AS id_adresse,
+    MIN(mb.id_bien)                                                        AS id_bien,
+    SUM(CASE WHEN b.type_local = 'Maison' THEN 1 ELSE 0 END)              AS nb_maisons,
+    SUM(CASE WHEN b.type_local = 'Appartement' THEN 1 ELSE 0 END)         AS nb_appart,
+    SUM(CASE WHEN b.type_local = 'Dépendance' THEN 1 ELSE 0 END)          AS nb_dependance,
+    SUM(CASE WHEN b.type_local = 'Local industriel. commercial ou assimilé'
+        THEN 1 ELSE 0 END)                                                 AS nb_localindu,
+    SUM(CASE WHEN b.type_local IS NULL THEN 1 ELSE 0 END)                 AS nb_pasdelocal,
+    SUM(ISNULL(mb.surface_reelle_bati, 0))                                AS surface_bati_totale,
+    AVG(mb.surface_reelle_bati)                                           AS surface_bati_moyenne,
+    SUM(ISNULL(mb.nombre_pieces_principales, 0))                          AS nb_pieces_total
+FROM Ventes_fonciere.dbo.MUTATION m
+LEFT JOIN Ventes_fonciere.dbo.Mutation_bien mb
+    ON m.n_mutation = mb.n_mutation
+LEFT JOIN Ventes_fonciere.dbo.BIEN b
+    ON mb.id_bien = b.id_bien
+LEFT JOIN Ventes_fonciere.dbo.PARCELLE p
+    ON m.n_parcelle = p.n_parcelle
+LEFT JOIN Ventes_fonciere_DWH.dbo.DIM_TEMPS dt
+    ON CAST(m.date_mutation AS DATE) = CAST(dt.date_mutation AS DATE)
+WHERE m.id_mutation IS NOT NULL
+GROUP BY
+    m.id_mutation, m.valeur_fonciere, m.nature_vente, m.n_parcelle</property>
+                <property
+                  dataType="System.String"
+                  description="Variable contenant la commande SQL à exécuter."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie la page de codes de la colonne à utiliser lorsque les informations de page de codes ne sont pas disponibles à partir de la source de données."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Force l'utilisation de la valeur de propriété DefaultCodePage lors de la description des données caractères."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie le mode utilisé pour accéder à la base de données."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="Mappages entre les paramètres de la commande SQL et les variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\FAIT_MUTATION\Source jointure table pour FAIT_MUTATION.Connections[OleDbConnection]"
+                  connectionManagerID="Package.ConnectionManagers[Connexion_Ventes_fonciere]"
+                  connectionManagerRefId="Package.ConnectionManagers[Connexion_Ventes_fonciere]"
+                  description="Connexion OLE DB en cours d'exécution utilisée pour accéder à la base de données."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\FAIT_MUTATION\Source jointure table pour FAIT_MUTATION.Outputs[Sortie de source OLE DB]"
+                  name="Sortie de source OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\FAIT_MUTATION\Source jointure table pour FAIT_MUTATION.Outputs[Sortie de source OLE DB].Columns[id_mutation]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\FAIT_MUTATION\Source jointure table pour FAIT_MUTATION.Outputs[Sortie de source OLE DB].ExternalColumns[id_mutation]"
+                      length="100"
+                      lineageId="Package\FAIT_MUTATION\Source jointure table pour FAIT_MUTATION.Outputs[Sortie de source OLE DB].Columns[id_mutation]"
+                      name="id_mutation"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\FAIT_MUTATION\Source jointure table pour FAIT_MUTATION.Outputs[Sortie de source OLE DB].Columns[valeur_fonciere]"
+                      dataType="r8"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\FAIT_MUTATION\Source jointure table pour FAIT_MUTATION.Outputs[Sortie de source OLE DB].ExternalColumns[valeur_fonciere]"
+                      lineageId="Package\FAIT_MUTATION\Source jointure table pour FAIT_MUTATION.Outputs[Sortie de source OLE DB].Columns[valeur_fonciere]"
+                      name="valeur_fonciere"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\FAIT_MUTATION\Source jointure table pour FAIT_MUTATION.Outputs[Sortie de source OLE DB].Columns[nature_vente]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\FAIT_MUTATION\Source jointure table pour FAIT_MUTATION.Outputs[Sortie de source OLE DB].ExternalColumns[nature_vente]"
+                      length="200"
+                      lineageId="Package\FAIT_MUTATION\Source jointure table pour FAIT_MUTATION.Outputs[Sortie de source OLE DB].Columns[nature_vente]"
+                      name="nature_vente"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\FAIT_MUTATION\Source jointure table pour FAIT_MUTATION.Outputs[Sortie de source OLE DB].Columns[id_bien]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\FAIT_MUTATION\Source jointure table pour FAIT_MUTATION.Outputs[Sortie de source OLE DB].ExternalColumns[id_bien]"
+                      lineageId="Package\FAIT_MUTATION\Source jointure table pour FAIT_MUTATION.Outputs[Sortie de source OLE DB].Columns[id_bien]"
+                      name="id_bien"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\FAIT_MUTATION\Source jointure table pour FAIT_MUTATION.Outputs[Sortie de source OLE DB].Columns[n_parcelle]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\FAIT_MUTATION\Source jointure table pour FAIT_MUTATION.Outputs[Sortie de source OLE DB].ExternalColumns[n_parcelle]"
+                      lineageId="Package\FAIT_MUTATION\Source jointure table pour FAIT_MUTATION.Outputs[Sortie de source OLE DB].Columns[n_parcelle]"
+                      name="n_parcelle"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\FAIT_MUTATION\Source jointure table pour FAIT_MUTATION.Outputs[Sortie de source OLE DB].Columns[id_adresse]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\FAIT_MUTATION\Source jointure table pour FAIT_MUTATION.Outputs[Sortie de source OLE DB].ExternalColumns[id_adresse]"
+                      lineageId="Package\FAIT_MUTATION\Source jointure table pour FAIT_MUTATION.Outputs[Sortie de source OLE DB].Columns[id_adresse]"
+                      name="id_adresse"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\FAIT_MUTATION\Source jointure table pour FAIT_MUTATION.Outputs[Sortie de source OLE DB].Columns[id_date]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\FAIT_MUTATION\Source jointure table pour FAIT_MUTATION.Outputs[Sortie de source OLE DB].ExternalColumns[id_date]"
+                      lineageId="Package\FAIT_MUTATION\Source jointure table pour FAIT_MUTATION.Outputs[Sortie de source OLE DB].Columns[id_date]"
+                      name="id_date"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\FAIT_MUTATION\Source jointure table pour FAIT_MUTATION.Outputs[Sortie de source OLE DB].ExternalColumns[id_mutation]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      name="id_mutation" />
+                    <externalMetadataColumn
+                      refId="Package\FAIT_MUTATION\Source jointure table pour FAIT_MUTATION.Outputs[Sortie de source OLE DB].ExternalColumns[valeur_fonciere]"
+                      dataType="r8"
+                      name="valeur_fonciere" />
+                    <externalMetadataColumn
+                      refId="Package\FAIT_MUTATION\Source jointure table pour FAIT_MUTATION.Outputs[Sortie de source OLE DB].ExternalColumns[nature_vente]"
+                      codePage="1252"
+                      dataType="str"
+                      length="200"
+                      name="nature_vente" />
+                    <externalMetadataColumn
+                      refId="Package\FAIT_MUTATION\Source jointure table pour FAIT_MUTATION.Outputs[Sortie de source OLE DB].ExternalColumns[id_bien]"
+                      dataType="i4"
+                      name="id_bien" />
+                    <externalMetadataColumn
+                      refId="Package\FAIT_MUTATION\Source jointure table pour FAIT_MUTATION.Outputs[Sortie de source OLE DB].ExternalColumns[n_parcelle]"
+                      dataType="i4"
+                      name="n_parcelle" />
+                    <externalMetadataColumn
+                      refId="Package\FAIT_MUTATION\Source jointure table pour FAIT_MUTATION.Outputs[Sortie de source OLE DB].ExternalColumns[id_adresse]"
+                      dataType="i4"
+                      name="id_adresse" />
+                    <externalMetadataColumn
+                      refId="Package\FAIT_MUTATION\Source jointure table pour FAIT_MUTATION.Outputs[Sortie de source OLE DB].ExternalColumns[id_date]"
+                      dataType="i4"
+                      name="id_date" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\FAIT_MUTATION\Source jointure table pour FAIT_MUTATION.Outputs[Sortie d'erreur de source OLE DB]"
+                  isErrorOut="true"
+                  name="Sortie d'erreur de source OLE DB">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\FAIT_MUTATION\Source jointure table pour FAIT_MUTATION.Outputs[Sortie d'erreur de source OLE DB].Columns[id_mutation]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      lineageId="Package\FAIT_MUTATION\Source jointure table pour FAIT_MUTATION.Outputs[Sortie d'erreur de source OLE DB].Columns[id_mutation]"
+                      name="id_mutation" />
+                    <outputColumn
+                      refId="Package\FAIT_MUTATION\Source jointure table pour FAIT_MUTATION.Outputs[Sortie d'erreur de source OLE DB].Columns[valeur_fonciere]"
+                      dataType="r8"
+                      lineageId="Package\FAIT_MUTATION\Source jointure table pour FAIT_MUTATION.Outputs[Sortie d'erreur de source OLE DB].Columns[valeur_fonciere]"
+                      name="valeur_fonciere" />
+                    <outputColumn
+                      refId="Package\FAIT_MUTATION\Source jointure table pour FAIT_MUTATION.Outputs[Sortie d'erreur de source OLE DB].Columns[nature_vente]"
+                      codePage="1252"
+                      dataType="str"
+                      length="200"
+                      lineageId="Package\FAIT_MUTATION\Source jointure table pour FAIT_MUTATION.Outputs[Sortie d'erreur de source OLE DB].Columns[nature_vente]"
+                      name="nature_vente" />
+                    <outputColumn
+                      refId="Package\FAIT_MUTATION\Source jointure table pour FAIT_MUTATION.Outputs[Sortie d'erreur de source OLE DB].Columns[id_bien]"
+                      dataType="i4"
+                      lineageId="Package\FAIT_MUTATION\Source jointure table pour FAIT_MUTATION.Outputs[Sortie d'erreur de source OLE DB].Columns[id_bien]"
+                      name="id_bien" />
+                    <outputColumn
+                      refId="Package\FAIT_MUTATION\Source jointure table pour FAIT_MUTATION.Outputs[Sortie d'erreur de source OLE DB].Columns[n_parcelle]"
+                      dataType="i4"
+                      lineageId="Package\FAIT_MUTATION\Source jointure table pour FAIT_MUTATION.Outputs[Sortie d'erreur de source OLE DB].Columns[n_parcelle]"
+                      name="n_parcelle" />
+                    <outputColumn
+                      refId="Package\FAIT_MUTATION\Source jointure table pour FAIT_MUTATION.Outputs[Sortie d'erreur de source OLE DB].Columns[id_adresse]"
+                      dataType="i4"
+                      lineageId="Package\FAIT_MUTATION\Source jointure table pour FAIT_MUTATION.Outputs[Sortie d'erreur de source OLE DB].Columns[id_adresse]"
+                      name="id_adresse" />
+                    <outputColumn
+                      refId="Package\FAIT_MUTATION\Source jointure table pour FAIT_MUTATION.Outputs[Sortie d'erreur de source OLE DB].Columns[id_date]"
+                      dataType="i4"
+                      lineageId="Package\FAIT_MUTATION\Source jointure table pour FAIT_MUTATION.Outputs[Sortie d'erreur de source OLE DB].Columns[id_date]"
+                      name="id_date" />
+                    <outputColumn
+                      refId="Package\FAIT_MUTATION\Source jointure table pour FAIT_MUTATION.Outputs[Sortie d'erreur de source OLE DB].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\FAIT_MUTATION\Source jointure table pour FAIT_MUTATION.Outputs[Sortie d'erreur de source OLE DB].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\FAIT_MUTATION\Source jointure table pour FAIT_MUTATION.Outputs[Sortie d'erreur de source OLE DB].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\FAIT_MUTATION\Source jointure table pour FAIT_MUTATION.Outputs[Sortie d'erreur de source OLE DB].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\FAIT_MUTATION\Trier sur id_mutation"
+              componentClassID="Microsoft.Sort"
+              contactInfo="Trier;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; Tous droits réservés; http://www.microsoft.com/sql/support;1"
+              description="Trie les données d'entrée en ordre croissant ou décroissant lorsque le tri ne peut pas être effectué à la source. Par exemple, triez les données de vente par 'id de client' avant leur enregistrement dans un fichier plat et leur diffusion dans un autre service. Remarque : nous ne recommandons pas cette transformation dans le cas de flux de données volumineux."
+              name="Trier sur id_mutation"
+              version="1">
+              <properties>
+                <property
+                  dataType="System.Boolean"
+                  description="Indique si la transformation de tri supprime les lignes comportant des valeurs de tri en double."
+                  name="EliminateDuplicates">true</property>
+                <property
+                  dataType="System.Int32"
+                  description="Spécifie le nombre maximal de threads à utiliser pour le tri."
+                  expressionType="Notify"
+                  name="MaximumThreads">-1</property>
+              </properties>
+              <inputs>
+                <input
+                  refId="Package\FAIT_MUTATION\Trier sur id_mutation.Inputs[Entrée de tri]"
+                  name="Entrée de tri">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\FAIT_MUTATION\Trier sur id_mutation.Inputs[Entrée de tri].Columns[id_mutation]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="100"
+                      cachedName="id_mutation"
+                      lineageId="Package\FAIT_MUTATION\Source jointure table pour FAIT_MUTATION.Outputs[Sortie de source OLE DB].Columns[id_mutation]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie les options de comparaison pour les données caractères."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie l'ordre de tri de la colonne."
+                          name="NewSortKeyPosition">1</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\FAIT_MUTATION\Trier sur id_mutation.Inputs[Entrée de tri].Columns[valeur_fonciere]"
+                      cachedDataType="r8"
+                      cachedName="valeur_fonciere"
+                      lineageId="Package\FAIT_MUTATION\Source jointure table pour FAIT_MUTATION.Outputs[Sortie de source OLE DB].Columns[valeur_fonciere]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie les options de comparaison pour les données caractères."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie l'ordre de tri de la colonne."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\FAIT_MUTATION\Trier sur id_mutation.Inputs[Entrée de tri].Columns[nature_vente]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="200"
+                      cachedName="nature_vente"
+                      lineageId="Package\FAIT_MUTATION\Source jointure table pour FAIT_MUTATION.Outputs[Sortie de source OLE DB].Columns[nature_vente]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie les options de comparaison pour les données caractères."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie l'ordre de tri de la colonne."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\FAIT_MUTATION\Trier sur id_mutation.Inputs[Entrée de tri].Columns[id_bien]"
+                      cachedDataType="i4"
+                      cachedName="id_bien"
+                      lineageId="Package\FAIT_MUTATION\Source jointure table pour FAIT_MUTATION.Outputs[Sortie de source OLE DB].Columns[id_bien]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie les options de comparaison pour les données caractères."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie l'ordre de tri de la colonne."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\FAIT_MUTATION\Trier sur id_mutation.Inputs[Entrée de tri].Columns[n_parcelle]"
+                      cachedDataType="i4"
+                      cachedName="n_parcelle"
+                      lineageId="Package\FAIT_MUTATION\Source jointure table pour FAIT_MUTATION.Outputs[Sortie de source OLE DB].Columns[n_parcelle]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie les options de comparaison pour les données caractères."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie l'ordre de tri de la colonne."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\FAIT_MUTATION\Trier sur id_mutation.Inputs[Entrée de tri].Columns[id_adresse]"
+                      cachedDataType="i4"
+                      cachedName="id_adresse"
+                      lineageId="Package\FAIT_MUTATION\Source jointure table pour FAIT_MUTATION.Outputs[Sortie de source OLE DB].Columns[id_adresse]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie les options de comparaison pour les données caractères."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie l'ordre de tri de la colonne."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\FAIT_MUTATION\Trier sur id_mutation.Inputs[Entrée de tri].Columns[id_date]"
+                      cachedDataType="i4"
+                      cachedName="id_date"
+                      lineageId="Package\FAIT_MUTATION\Source jointure table pour FAIT_MUTATION.Outputs[Sortie de source OLE DB].Columns[id_date]">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie les options de comparaison pour les données caractères."
+                          name="NewComparisonFlags">0</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Spécifie l'ordre de tri de la colonne."
+                          name="NewSortKeyPosition">0</property>
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\FAIT_MUTATION\Trier sur id_mutation.Outputs[Sortie de tri]"
+                  isSorted="true"
+                  name="Sortie de tri">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\FAIT_MUTATION\Trier sur id_mutation.Outputs[Sortie de tri].Columns[id_mutation]"
+                      codePage="1252"
+                      dataType="str"
+                      length="100"
+                      lineageId="Package\FAIT_MUTATION\Trier sur id_mutation.Outputs[Sortie de tri].Columns[id_mutation]"
+                      name="id_mutation"
+                      sortKeyPosition="1">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Spécifie l'identificateur de traçabilité de la colonne d'entrée associé à cette colonne de sortie."
+                          name="SortColumnId">#{Package\FAIT_MUTATION\Source jointure table pour FAIT_MUTATION.Outputs[Sortie de source OLE DB].Columns[id_mutation]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\FAIT_MUTATION\Trier sur id_mutation.Outputs[Sortie de tri].Columns[valeur_fonciere]"
+                      dataType="r8"
+                      lineageId="Package\FAIT_MUTATION\Trier sur id_mutation.Outputs[Sortie de tri].Columns[valeur_fonciere]"
+                      name="valeur_fonciere">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Spécifie l'identificateur de traçabilité de la colonne d'entrée associé à cette colonne de sortie."
+                          name="SortColumnId">#{Package\FAIT_MUTATION\Source jointure table pour FAIT_MUTATION.Outputs[Sortie de source OLE DB].Columns[valeur_fonciere]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\FAIT_MUTATION\Trier sur id_mutation.Outputs[Sortie de tri].Columns[nature_vente]"
+                      codePage="1252"
+                      dataType="str"
+                      length="200"
+                      lineageId="Package\FAIT_MUTATION\Trier sur id_mutation.Outputs[Sortie de tri].Columns[nature_vente]"
+                      name="nature_vente">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Spécifie l'identificateur de traçabilité de la colonne d'entrée associé à cette colonne de sortie."
+                          name="SortColumnId">#{Package\FAIT_MUTATION\Source jointure table pour FAIT_MUTATION.Outputs[Sortie de source OLE DB].Columns[nature_vente]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\FAIT_MUTATION\Trier sur id_mutation.Outputs[Sortie de tri].Columns[id_bien]"
+                      dataType="i4"
+                      lineageId="Package\FAIT_MUTATION\Trier sur id_mutation.Outputs[Sortie de tri].Columns[id_bien]"
+                      name="id_bien">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Spécifie l'identificateur de traçabilité de la colonne d'entrée associé à cette colonne de sortie."
+                          name="SortColumnId">#{Package\FAIT_MUTATION\Source jointure table pour FAIT_MUTATION.Outputs[Sortie de source OLE DB].Columns[id_bien]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\FAIT_MUTATION\Trier sur id_mutation.Outputs[Sortie de tri].Columns[n_parcelle]"
+                      dataType="i4"
+                      lineageId="Package\FAIT_MUTATION\Trier sur id_mutation.Outputs[Sortie de tri].Columns[n_parcelle]"
+                      name="n_parcelle">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Spécifie l'identificateur de traçabilité de la colonne d'entrée associé à cette colonne de sortie."
+                          name="SortColumnId">#{Package\FAIT_MUTATION\Source jointure table pour FAIT_MUTATION.Outputs[Sortie de source OLE DB].Columns[n_parcelle]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\FAIT_MUTATION\Trier sur id_mutation.Outputs[Sortie de tri].Columns[id_adresse]"
+                      dataType="i4"
+                      lineageId="Package\FAIT_MUTATION\Trier sur id_mutation.Outputs[Sortie de tri].Columns[id_adresse]"
+                      name="id_adresse">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Spécifie l'identificateur de traçabilité de la colonne d'entrée associé à cette colonne de sortie."
+                          name="SortColumnId">#{Package\FAIT_MUTATION\Source jointure table pour FAIT_MUTATION.Outputs[Sortie de source OLE DB].Columns[id_adresse]}</property>
+                      </properties>
+                    </outputColumn>
+                    <outputColumn
+                      refId="Package\FAIT_MUTATION\Trier sur id_mutation.Outputs[Sortie de tri].Columns[id_date]"
+                      dataType="i4"
+                      lineageId="Package\FAIT_MUTATION\Trier sur id_mutation.Outputs[Sortie de tri].Columns[id_date]"
+                      name="id_date">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.Int32"
+                          description="Spécifie l'identificateur de traçabilité de la colonne d'entrée associé à cette colonne de sortie."
+                          name="SortColumnId">#{Package\FAIT_MUTATION\Source jointure table pour FAIT_MUTATION.Outputs[Sortie de source OLE DB].Columns[id_date]}</property>
+                      </properties>
+                    </outputColumn>
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\FAIT_MUTATION.Paths[Sortie de source OLE DB]"
+              endId="Package\FAIT_MUTATION\Trier sur id_mutation.Inputs[Entrée de tri]"
+              name="Sortie de source OLE DB"
+              startId="Package\FAIT_MUTATION\Source jointure table pour FAIT_MUTATION.Outputs[Sortie de source OLE DB]" />
+            <path
+              refId="Package\FAIT_MUTATION.Paths[Sortie de tri]"
+              endId="Package\FAIT_MUTATION\Destination FAIT_MUTATION.Inputs[Entrée de destination OLE DB]"
+              name="Sortie de tri"
+              startId="Package\FAIT_MUTATION\Trier sur id_mutation.Outputs[Sortie de tri]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--Cette section CDATA contient des informations sur la disposition du package. Elle comprend des informations telles que les coordonnées (x,y), la largeur et la hauteur.-->
+<!--Si vous modifiez manuellement cette section et commettez une erreur, vous pouvez la supprimer. -->
+<!--Le package pourra toujours se charger normalement, mais les informations de disposition précédente seront perdues et le concepteur réorganisera automatiquement les éléments sur l'aire de conception.-->
+<Objects
+  Version="8">
+  <!--Chaque nœud ci-dessous contiendra des propriétés qui n'affectent pas le comportement d'exécution.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="184,41.5"
+          Id="Package\FAIT_MUTATION"
+          TopLeft="170.714286077692,146.058823401386" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\FAIT_MUTATION">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="177.5,41.5"
+          Id="Package\FAIT_MUTATION\Trier sur id_mutation"
+          TopLeft="265.500000425748,174.088235198936" />
+        <NodeLayout
+          Size="285.5,41.5"
+          Id="Package\FAIT_MUTATION\Source jointure table pour FAIT_MUTATION"
+          TopLeft="218.57142903671,58.8823528895638" />
+        <NodeLayout
+          Size="215,41.5"
+          Id="Package\FAIT_MUTATION\Destination FAIT_MUTATION"
+          TopLeft="247.142857668959,305.117646791376" />
+        <EdgeLayout
+          Id="Package\FAIT_MUTATION.Paths[Sortie de tri]"
+          TopLeft="354.521429047353,215.688235198936">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,89.4294115924404"
+              Start="0,0"
+              End="0,81.9294115924404">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,81.9294115924404" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\FAIT_MUTATION.Paths[Sortie de source OLE DB]"
+          TopLeft="357.835714731229,100.482352889564">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,73.6058823093721"
+              Start="0,0"
+              End="0,66.1058823093721">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,66.1058823093721" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\FAIT_MUTATION\Source jointure table pour FAIT_MUTATION">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\FAIT_MUTATION\Destination FAIT_MUTATION">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
