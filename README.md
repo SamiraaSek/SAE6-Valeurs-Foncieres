@@ -50,7 +50,7 @@ Tableau de bord Power BI
 |---|---|
 | Source | [data.gouv.fr — DVF Géolocalisées](https://www.data.gouv.fr/datasets/demandes-de-valeurs-foncieres-geolocalisees/) |
 | Période | 2020 — 2025 |
-| Nb transactions | 7 338 623 lignes |
+| Nombre de lignes | 20 102 739 lignes |
 | Format | CSV (séparateur `;`) |
 
 ---
